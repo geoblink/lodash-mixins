@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/geoblink/lodash-mixins.svg?branch=master)](https://travis-ci.org/geoblink/lodash-mixins)
+
 # lodash-mixins
 
 A collection of functionalities to extend lodash library.
