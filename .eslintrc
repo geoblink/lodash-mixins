@@ -1,0 +1,20 @@
+{
+  "env": {
+    "browser": true
+  },
+  "extends": [
+    "standard"
+  ],
+  "rules": {
+    "no-console": ["error", { "allow": ["warn", "error"] }]
+  },
+  "globals": {
+    "_": true,
+    "after": true,
+    "afterEach": true,
+    "before": true,
+    "beforeEach": true,
+    "describe": true,
+    "it": true
+  }
+}
