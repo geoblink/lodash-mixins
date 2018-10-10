@@ -1,9 +1,9 @@
 {
-  "name": "lodash-mixins",
+  "name": "@geoblink/lodash-mixins",
   "version": "1.0.0",
-  "description": "Extends Lodash with additional functionality",
+  "description": "A collection of useful functions built on top of Lodash",
   "main": "index.js",
-  "author": "Geoblink",
+  "author": "Geoblink <contact@geoblink.com>",
   "scripts": {
     "test": "nyc mocha",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
@@ -32,7 +32,5 @@
   "peerDependencies": {
     "lodash": "^4.17.11"
   },
-  "dependencies": {
-    "jsdoc": "^3.5.5"
-  }
+  "dependencies": {}
 }
