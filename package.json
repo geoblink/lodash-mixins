@@ -1,6 +1,6 @@
 {
   "name": "@geoblink/lodash-mixins",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A collection of useful functions built on top of Lodash",
   "main": "index.js",
   "author": "Geoblink <contact@geoblink.com>",
