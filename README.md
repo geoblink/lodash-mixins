@@ -7,7 +7,17 @@ A collection of functionalities to extend lodash library.
 
 ## Installation
 
-`yarn add --save lodash-mixins`
+Using NPM:
+
+```bash
+npm i --save @geoblink/lodash-mixins
+```
+
+Or yarn:
+
+```bash
+yarn add --save @geoblink/lodash-mixins
+```
 
 ## Usage
 
@@ -15,7 +25,7 @@ In your app:
 
 ```javascript
 const _ = require('lodash')
-require('lodash-mixins')(_)
+require('@geoblink/lodash-mixins')(_)
 ```
 
 ## API
