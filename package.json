@@ -2,14 +2,16 @@
   "name": "@geoblink/lodash-mixins",
   "version": "1.0.1",
   "description": "A collection of useful functions built on top of Lodash",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "files": ["dist"],
   "author": "Geoblink <contact@geoblink.com>",
   "scripts": {
     "test": "run-s test:*",
     "test:unit": "nyc mocha",
     "test:dist": "run-s build && es-check es5 dist/**/*.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "build": "rm -rf dist && babel src --out-dir dist"
+    "build": "rm -rf dist && babel src --out-dir dist",
+    "prepublishOnly": "run-s test build"
   },
   "keywords": [
     "lodash",
