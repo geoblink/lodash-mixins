@@ -1,7 +1,4 @@
-.eslintrc
-.gitignore
-.jsdoc.json
-.travis.yml
+.*
 docs
 test
 src
