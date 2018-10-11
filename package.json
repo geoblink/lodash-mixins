@@ -7,7 +7,8 @@
   "scripts": {
     "test": "nyc mocha",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "doc": "jsdoc --configure .jsdoc.json --verbose"
+    "doc": "jsdoc --configure .jsdoc.json --verbose",
+    "prepublishOnly": "npm run-scrip doc && if [[ $(git status docs --porcelain) ]]; then git add docs && git commit -m \":memo: Update documentation\"; fi"
   },
   "keywords": [
     "lodash",
