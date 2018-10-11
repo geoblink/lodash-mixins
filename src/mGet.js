@@ -1,13 +1,20 @@
 var _ = require('lodash')
 
+module.exports = mGet
+
 /**
- * Multiple get.
+ * Returns multiple values of an object, defaulting missing ones to a common
+ * default.
  *
- * @param {Object} object The object to query.
- * @param {Array} arrayOfKeys Array with the paths of the properties to get.
- * @param {*} defaultValue The value returned for undefined resolved values.
- * @return {Array} Returns the new mapped array.
+ * @param {Object} object Object to be queried.
+ * @param {string[]} arrayOfKeys Array with the paths of the properties to get.
+ * @param {any} defaultValue The value returned for missing resolved values.
+ * @return {Array} New array with values for given key paths or default one.
  */
-module.exports = function mGet (object, arrayOfKeys, defaultValue) {
-  return _.map(arrayOfKeys, function (key) { return _.get(object, key, defaultValue) })
+function mGet (object, arrayOfKeys, defaultValue) {
+  return _.map(arrayOfKeys, getValueOrDefault)
+
+  function getValueOrDefault (key) {
+    return _.get(object, key, defaultValue)
+  }
 }

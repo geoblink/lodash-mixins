@@ -1,14 +1,18 @@
 var _ = require('lodash')
 
+module.exports = shortcuttedReduce
+
 /**
- * Like _.reduce but as soon as accumulator changes it finishes execution.
+ * Reduce which finish as soon as accumulator changes.
  *
+ * @template T Boolean | Number | String
  * @param {Array|Object} collection Collection to be reduced.
- * @param {Function} iteratee Function that will be called in each iteration. It'll receive as params the value and the index.
- * @param {Boolean|Integer|String} Accumulator. Note that is **must** be a simple primitive.
- * @returns {*} Returns the accumulated value.
+ * @param {Function} iteratee Function that will be called in each iteration.
+ * It'll receive as parameters the accumulator, the value and the index.
+ * @param {T} accumulator Note that is **must** be a simple primitive.
+ * @returns {T} Accumulated value.
  */
-module.exports = function shortcuttedReduce (collection, iteratee, accumulator) {
+function shortcuttedReduce (collection, iteratee, accumulator) {
   if (_.isObject(accumulator)) {
     throw new Error('Only simple primitives (boolean, numbers, strings...) are allowed')
   }
