@@ -14,7 +14,7 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "build": "rm -rf dist && babel src --out-dir dist",
     "docs": "run-s docs:*",
-    "docs:build": "jsdoc --configure .jsdoc.json --verbose",
+    "docs:build": "rm -rf docs && jsdoc --configure .jsdoc.json --verbose && mv docs/@geoblink/lodash-mixins/*/* docs/ && rm -rf docs/@geoblink",
     "docs:commit": "if [[ $(git status docs --porcelain) ]]; then git add docs && git commit -m \":memo: Update documentation\"; fi",
     "prepublishOnly": "run-s test build docs"
   },
