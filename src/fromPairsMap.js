@@ -1,12 +1,15 @@
 var _ = require('lodash')
 
+module.exports = fromPairsMap
+
 /**
- * Applies fromPairs to the result of mapping the given iteratee to the given array.
+ * Applies `fromPairs` to the result of mapping given `iteratee` to given
+ * collection.
  *
- * @param {Array|Object} collection The collection to iterate over.
- * @param {Function} iteratee The function invoked per iteration.
- * @returns {Object} Returns the new object.
+ * @param {Array|Object} collection Collection to iterate over
+ * @param {Function} iteratee Function invoked per iteration
+ * @returns {Object} New object
  */
-module.exports = function fromPairsMap (collection, iteratee) {
+function fromPairsMap (collection, iteratee) {
   return _.fromPairs(_.map(collection, iteratee))
 }

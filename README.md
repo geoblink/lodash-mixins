@@ -1,7 +1,12 @@
+[![GitHub license](https://img.shields.io/github/license/geoblink/lodash-mixins.svg)](https://github.com/geoblink/lodash-mixins/blob/master/LICENSE)
 [![Build Status](https://travis-ci.org/geoblink/lodash-mixins.svg?branch=master)](https://travis-ci.org/geoblink/lodash-mixins)
 [![Coverage Status](https://coveralls.io/repos/github/geoblink/lodash-mixins/badge.svg)](https://coveralls.io/github/geoblink/lodash-mixins)
+![npm bundle size (minified)](https://img.shields.io/bundlephobia/min/@geoblink/lodash-mixins.svg)
+![npm](https://img.shields.io/npm/v/@geoblink/lodash-mixins.svg)
 
-# lodash-mixins
+
+
+# @geoblink/lodash-mixins
 
 A collection of functionalities to extend lodash library.
 

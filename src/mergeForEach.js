@@ -1,6 +1,8 @@
 var _ = require('lodash')
 var { SORTING_ORDER } = require('./constants')
 
+module.exports = mergeForEach
+
 /**
  * @template I
  * @typedef {string|string[]|function(I): any} Iteratee
@@ -31,8 +33,8 @@ var { SORTING_ORDER } = require('./constants')
  *
  * @template LHSItem
  * @template RHSItem
- * @param {{[key: string]: LHSItem}|LHSItem[]} lhs A collection of elements.
- * @param {{[key: string]: RHSItem}|RHSItem[]} rhs A collection of elements.
+ * @param {Object|LHSItem[]} lhs A collection of elements.
+ * @param {Object|RHSItem[]} rhs A collection of elements.
  * @param {object} options Options for comparison.
  * @param {Iteratee<LHSItem>} options.lhsIteratee Iteratee used to get the
  * value used to sort `lhs`. Returned value will be used to sort the collection
@@ -56,7 +58,7 @@ var { SORTING_ORDER } = require('./constants')
  * equivalent to `<` operator. Will receive as 3rd and 4th parameters the
  * iteratees used to get sorting value for `lhs` and `rhs`.
  */
-module.exports = function mergeForEach (lhs, rhs, {
+function mergeForEach (lhs, rhs, {
   lhsIteratee = function (lhsItem) { return lhsItem },
   rhsIteratee = function (rhsItem) { return rhsItem },
   innerCallback = function () {},

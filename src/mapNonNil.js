@@ -1,13 +1,15 @@
 var _ = require('lodash')
 
+module.exports = mapNonNil
+
 /**
- * Map returning only non-nil elements
+ * Map function returning only non-nil elements.
  *
- * @param {Array|Object} collection The collection to iterate over.
- * @param {Function} iteratee The function invoked per iteration.
- * @returns {Array} Returns the new mapped array.
+ * @param {Array|Object} collection Collection to iterate over.
+ * @param {Function} iteratee Function invoked per iteration.
+ * @returns {Array} New mapped array.
  */
-module.exports = function mapNonNil (collection, iteratee) {
+function mapNonNil (collection, iteratee) {
   return _.filter(_.map(collection, iteratee), isNotNil)
 
   function isNotNil (item) {

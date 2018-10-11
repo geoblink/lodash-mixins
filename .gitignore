@@ -1,3 +1,4 @@
 .nyc_output
+yarn-error.log
 node_modules
 dist
