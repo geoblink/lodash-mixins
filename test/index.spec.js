@@ -1,13 +1,15 @@
-const chai = require('chai')
-const { expect } = chai
-chai.use(require('sinon-chai'))
 const _ = require('lodash')
 const fs = require('fs-extra')
 const path = require('path')
+
+const chai = require('chai')
+chai.use(require('sinon-chai'))
+const { expect } = chai
+
 require('../src')(_)
 
 describe('Index imports', function () {
-  it('There should be a lodash function for each src file', async function () {
+  it('Should have added a function to Lodash for each src file', async function () {
     const notLodashMixinsFiles = {
       'index.js': true,
       'constants.js': true
@@ -15,8 +17,9 @@ describe('Index imports', function () {
     const files = await fs.readdir('src')
     const lodashMixinsFiles = _.reject(files, f => f in notLodashMixinsFiles)
     const lodashMixinsFuncs = _.map(lodashMixinsFiles, f => path.basename(f, path.extname(f)))
-    _.forEach(lodashMixinsFuncs, function (f) {
-      expect(_).to.have.property(f).that.is.a('function')
-    })
+
+    for (const functionName of lodashMixinsFuncs) {
+      expect(_).to.have.property(functionName).that.is.a('function')
+    }
   })
 })
