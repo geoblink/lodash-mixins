@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      index.js - Documentation
+      fromPairsMapNonNil.js - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -78,7 +78,7 @@
   <div id="main">
     
       <h1 class="page-title">
-        index.js
+        fromPairsMapNonNil.js
       </h1>
     
 
@@ -87,31 +87,20 @@
 
 <section>
   <article>
-    <pre class="prettyprint source linenums"><code>var fromPairsMap = require('./fromPairsMap')
-var getTruthyKeys = require('./getTruthyKeys')
-var hasTruthyValues = require('./hasTruthyValues')
-var mapNonNil = require('./mapNonNil')
-var mergeForEach = require('./mergeForEach')
-var mGet = require('./mGet')
-var shortcuttedReduce = require('./shortcuttedReduce')
+    <pre class="prettyprint source linenums"><code>const _ = require('lodash')
+const mapNonNil = require('../src/mapNonNil')
+module.exports = fromPairsMapNonNil
 
 /**
- * Extends Lodash with additional functionality.
+ * Applies `fromPairs` to the result of mapping and filtering `nil` values given `iteratee` to given
+ * collection.
  *
- * @param {lodash} _ Object Lodash instance to be extended
+ * @param {Array|Object} collection Collection to iterate over
+ * @param {Function} iteratee Function invoked per iteration
+ * @returns {Object} New object
  */
-module.exports = function (_) {
-  _.mixin({
-    fromPairsMap: fromPairsMap,
-    getTruthyKeys: getTruthyKeys,
-    hasTruthyValues: hasTruthyValues,
-    mapNonNil: mapNonNil,
-    mergeForEach: mergeForEach,
-    mGet: mGet,
-    shortcuttedReduce: shortcuttedReduce
-  })
-
-  return _
+function fromPairsMapNonNil (collection, iteratee) {
+  return _.fromPairs(mapNonNil(collection, iteratee))
 }
 </code></pre>
   </article>
