@@ -1,6 +1,8 @@
 # v1.1.1
 
-- Add src files test
+Fixes:
+
+- Export `fromPairsMapNonNil`
 
 # v1.1.0
 
