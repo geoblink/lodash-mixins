@@ -1,4 +1,5 @@
 var fromPairsMap = require('./fromPairsMap')
+var fromPairsMapNonNil = require('./fromPairsMapNonNil')
 var getTruthyKeys = require('./getTruthyKeys')
 var hasTruthyValues = require('./hasTruthyValues')
 var mapNonNil = require('./mapNonNil')
@@ -14,6 +15,7 @@ var shortcuttedReduce = require('./shortcuttedReduce')
 module.exports = function (_) {
   _.mixin({
     fromPairsMap: fromPairsMap,
+    fromPairsMapNonNil: fromPairsMapNonNil,
     getTruthyKeys: getTruthyKeys,
     hasTruthyValues: hasTruthyValues,
     mapNonNil: mapNonNil,
