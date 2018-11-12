@@ -12,7 +12,7 @@ describe('fromPairsMapNonNil', function () {
       b: 'b',
     }
     const result = fromPairsMapNonNil(array, (v) => {
-      return !!v ? [v, v] : null
+      return v ? [v, v] : null
     })
     expect(result).to.be.deep.equal(expectedResult)
   })
