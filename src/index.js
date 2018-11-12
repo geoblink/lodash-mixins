@@ -1,11 +1,11 @@
-var fromPairsMap = require('./fromPairsMap')
-var fromPairsMapNonNil = require('./fromPairsMapNonNil')
-var getTruthyKeys = require('./getTruthyKeys')
-var hasTruthyValues = require('./hasTruthyValues')
-var mapNonNil = require('./mapNonNil')
-var mergeForEach = require('./mergeForEach')
-var mGet = require('./mGet')
-var shortcuttedReduce = require('./shortcuttedReduce')
+const fromPairsMap = require('./fromPairsMap')
+const fromPairsMapNonNil = require('./fromPairsMapNonNil')
+const getTruthyKeys = require('./getTruthyKeys')
+const hasTruthyValues = require('./hasTruthyValues')
+const mapNonNil = require('./mapNonNil')
+const mergeForEach = require('./mergeForEach')
+const mGet = require('./mGet')
+const shortcuttedReduce = require('./shortcuttedReduce')
 
 /**
  * Extends Lodash with additional functionality.
