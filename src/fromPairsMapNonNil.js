@@ -1,4 +1,4 @@
-var _ = require('lodash')
+const _ = require('lodash')
 const mapNonNil = require('../src/mapNonNil')
 module.exports = fromPairsMapNonNil
 
