@@ -1,3 +1,7 @@
+# v1.1.0
+
+- Add fromPairsMapNonNil
+
 # v1.0.2
 
 - Publish library in ES5.
