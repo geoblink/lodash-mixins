@@ -19,3 +19,36 @@ function hasTruthyValues<Collection extends object> (collection: Collection): bo
     false
   )
 }
+
+declare module 'lodash' {
+  interface LoDashStatic {
+    /**
+     * Returns multiple values of an object, defaulting missing ones to a common
+     * default.
+     *
+     * @param object Object to be queried.
+     * @param arrayOfKeys Array with the paths of the properties to get.
+     * @param defaultValue The value returned for missing resolved values.
+     * @return New array with values for given key paths or default one.
+     */
+    hasTruthyValues<Collection extends object>(object: Collection): boolean
+  }
+
+  interface LoDashImplicitWrapper<TValue> {
+    /**
+     * @see _.hasTruthyValues
+     */
+    hasTruthyValues(
+      this: LoDashImplicitWrapper<TValue | null | undefined>
+    ): LoDashImplicitWrapper<boolean>
+  }
+
+  interface LoDashExplicitWrapper<TValue> {
+    /**
+    * @see _.hasTruthyValues
+    */
+    hasTruthyValues(
+      this: LoDashExplicitWrapper<TValue | null | undefined>
+    ): LoDashExplicitWrapper<boolean>
+  }
+}
