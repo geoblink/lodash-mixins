@@ -1,8 +1,5 @@
 /**
  * Possible results when comparing two items.
- * @readonly
- * @constant
- * @enum {SortingOrder}
  */
 enum SORTING_ORDER {
   /** Any negative number */
