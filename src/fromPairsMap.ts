@@ -10,10 +10,10 @@ export default fromPairsMap
  * @param iteratee Function invoked per iteration
  * @returns New object
  */
-export function fromPairsMap<T> (
+export function fromPairsMap<T, PropertyName, TResult> (
   collection: T[] | null | undefined,
-  iteratee: _.ArrayIterator<T, any>
-): _.Dictionary<T> {
+  iteratee: _.ArrayIterator<T, [PropertyName, TResult]>
+): _.Dictionary<TResult> {
   return _.fromPairs(_.map(collection, iteratee))
 }
 
@@ -23,59 +23,37 @@ declare module 'lodash' {
      * Applies `fromPairs` to the result of mapping given `iteratee` to given
      * collection.
      *
-     * @param collection The collection to iterate over.
-     * @param iteratee The function invoked per iteration.
-     * @return Returns the new object.
+     * @param collection Collection to iterate over
+     * @param iteratee Function invoked per iteration
+     * @returns New object
      */
-    fromPairsMap<T, TResult>(
+    fromPairsMap<T, PropertyName, TResult>(
       collection: T[] | null | undefined,
-      iteratee: _.ArrayIterator<T, TResult>
-    ): _.Dictionary<TResult>
+      iteratee: ArrayIterator<T, [PropertyName, TResult]>
+    ): Dictionary<TResult>
 
     /**
      * @see _.fromPairsMap
      */
     fromPairsMap<T, TResult>(
-      collection: _.List<T> | null | undefined,
-      iteratee: _.ListIterator<T, TResult>
-    ): _.Dictionary<TResult>
+      collection: List<T> | null | undefined,
+      iteratee: ListIterator<T, [PropertyName, TResult]>
+    ): Dictionary<TResult>
 
     /**
      * @see _.fromPairsMap
      */
     fromPairsMap<T>(
-      collection: _.List<T> | _.Dictionary<T> | _.NumericDictionary<T> | null | undefined
-    ): _.Dictionary<T>
+      collection: List<T> | Dictionary<T> | NumericDictionary<T> | null | undefined
+    ): Dictionary<T>
 
     /**
      * @see _.fromPairsMap
      */
     fromPairsMap<T extends object, TResult>(
       collection: T | null | undefined,
-      iteratee: _.ObjectIterator<T, TResult>
-    ): _.Dictionary<TResult>
-
-    /** @see _.fromPairsMap */
-    fromPairsMap<T, K extends keyof T>(
-      collection: _.List<T> | _.Dictionary<T> | _.NumericDictionary<T> | null | undefined,
-      iteratee: K
-    ): _.Dictionary<T[K]>
-
-    /**
-     * @see _.fromPairsMap
-     */
-    fromPairsMap<T>(
-      collection: _.List<T> | _.Dictionary<T> | _.NumericDictionary<T> | null | undefined,
-      iteratee?: string
-    ): _.Dictionary<any>
-
-    /**
-     * @see _.fromPairsMap
-     */
-    fromPairsMap<T>(
-      collection: _.List<T> | _.Dictionary<T> | _.NumericDictionary<T> | null | undefined,
-      iteratee?: object
-    ): boolean[]
+      iteratee: ObjectIterator<T, [PropertyName, TResult]>
+    ): Dictionary<TResult>
   }
 
   interface LoDashImplicitWrapper<TValue> {
@@ -84,51 +62,29 @@ declare module 'lodash' {
      */
     fromPairsMap<T, TResult>(
       this: LoDashImplicitWrapper<T[] | null | undefined>,
-      iteratee: _.ArrayIterator<T, TResult>
-    ): LoDashImplicitWrapper<_.Dictionary<TResult>>;
+      iteratee: ArrayIterator<T, [PropertyName, TResult]>
+    ): LoDashImplicitWrapper<Dictionary<TResult>>
 
     /**
      * @see _.fromPairsMap
      */
     fromPairsMap<T, TResult>(
-      this: LoDashImplicitWrapper<_.List<T> | null | undefined>,
-      iteratee: _.ListIterator<T, TResult>
-    ): LoDashImplicitWrapper<_.Dictionary<TResult>>;
+      this: LoDashImplicitWrapper<List<T> | null | undefined>,
+      iteratee: ListIterator<T, [PropertyName, TResult]>
+    ): LoDashImplicitWrapper<Dictionary<TResult>>
 
     /**
      * @see _.fromPairsMap
      */
-    fromPairsMap<T>(this: LoDashImplicitWrapper<_.List<T> | _.Dictionary<T> | _.NumericDictionary<T> | null | undefined>): LoDashImplicitWrapper<T[]>;
+    fromPairsMap<T>(this: LoDashImplicitWrapper<List<T> | Dictionary<T> | NumericDictionary<T> | null | undefined>): LoDashImplicitWrapper<Dictionary<T>>
 
     /**
      * @see _.fromPairsMap
      */
     fromPairsMap<T extends object, TResult>(
       this: LoDashImplicitWrapper<T | null | undefined>,
-      iteratee: _.ObjectIterator<T, TResult>
-    ): LoDashImplicitWrapper<_.Dictionary<TResult>>;
-
-    /** @see _.fromPairsMap */
-    fromPairsMap<T, K extends keyof T>(
-      this: LoDashImplicitWrapper<_.List<T> | _.Dictionary<T> | _.NumericDictionary<T> | null | undefined>,
-      iteratee: K
-    ): LoDashImplicitWrapper<_.Dictionary<T[K]>>;
-
-    /**
-     * @see _.fromPairsMap
-     */
-    fromPairsMap<T>(
-      this: LoDashImplicitWrapper<_.List<T> | _.Dictionary<T> | _.NumericDictionary<T> | null | undefined>,
-      iteratee?: string
-    ): LoDashImplicitWrapper<_.Dictionary<any>>;
-
-    /**
-     * @see _.fromPairsMap
-     */
-    fromPairsMap<T>(
-      this: LoDashImplicitWrapper<_.List<T> | _.Dictionary<T> | _.NumericDictionary<T> | null | undefined>,
-      iteratee?: object
-    ): LoDashImplicitWrapper<boolean[]>;
+      iteratee: ObjectIterator<T, [PropertyName, TResult]>
+    ): LoDashImplicitWrapper<Dictionary<TResult>>
   }
 
   interface LoDashExplicitWrapper<TValue> {
@@ -137,50 +93,28 @@ declare module 'lodash' {
      */
     fromPairsMap<T, TResult>(
       this: LoDashExplicitWrapper<T[] | null | undefined>,
-      iteratee: _.ArrayIterator<T, TResult>
-    ): LoDashExplicitWrapper<_.Dictionary<TResult>>;
+      iteratee: ArrayIterator<T, [PropertyName, TResult]>
+    ): LoDashExplicitWrapper<Dictionary<TResult>>
 
     /**
      * @see _.fromPairsMap
      */
     fromPairsMap<T, TResult>(
-      this: LoDashExplicitWrapper<_.List<T> | null | undefined>,
-      iteratee: _.ListIterator<T, TResult>
-    ): LoDashExplicitWrapper<_.Dictionary<TResult>>;
+      this: LoDashExplicitWrapper<List<T> | null | undefined>,
+      iteratee: ListIterator<T, [PropertyName, TResult]>
+    ): LoDashExplicitWrapper<Dictionary<TResult>>
 
     /**
      * @see _.fromPairsMap
      */
-    fromPairsMap<T>(this: LoDashExplicitWrapper<_.List<T> | _.Dictionary<T> | _.NumericDictionary<T> | null | undefined>): LoDashExplicitWrapper<T[]>;
+    fromPairsMap<T>(this: LoDashExplicitWrapper<List<T> | Dictionary<T> | NumericDictionary<T> | null | undefined>): LoDashExplicitWrapper<Dictionary<T>>
 
     /**
      * @see _.fromPairsMap
      */
     fromPairsMap<T extends object, TResult>(
       this: LoDashExplicitWrapper<T | null | undefined>,
-      iteratee: _.ObjectIterator<T, TResult>
-    ): LoDashExplicitWrapper<_.Dictionary<TResult>>;
-
-    /** @see _.fromPairsMap */
-    fromPairsMap<T, K extends keyof T>(
-      this: LoDashExplicitWrapper<_.List<T> | _.Dictionary<T> | _.NumericDictionary<T> | null | undefined>,
-      iteratee: K
-    ): LoDashExplicitWrapper<_.Dictionary<T[K]>>;
-
-    /**
-     * @see _.fromPairsMap
-     */
-    fromPairsMap<T>(
-      this: LoDashExplicitWrapper<_.List<T> | _.Dictionary<T> | _.NumericDictionary<T> | null | undefined>,
-      iteratee?: string
-    ): LoDashExplicitWrapper<_.Dictionary<any>>;
-
-    /**
-     * @see _.fromPairsMap
-     */
-    fromPairsMap<T>(
-      this: LoDashExplicitWrapper<_.List<T> | _.Dictionary<T> | _.NumericDictionary<T> | null | undefined>,
-      iteratee?: object
-    ): LoDashExplicitWrapper<boolean[]>;
+      iteratee: ObjectIterator<T, [PropertyName, TResult]>
+    ): LoDashExplicitWrapper<Dictionary<TResult>>
   }
 }
