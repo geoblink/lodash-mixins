@@ -152,8 +152,8 @@ declare module 'lodash' {
     ): TResult;
 
     /**
-    * @see _.shortcuttedReduce
-    */
+     * @see _.shortcuttedReduce
+     */
     shortcuttedReduce<T extends object, TResult>(
       this: LoDashImplicitWrapper<T | null | undefined>,
       callback: MemoObjectIterator<T[keyof T], TResult, T>,
@@ -161,24 +161,24 @@ declare module 'lodash' {
     ): TResult;
 
     /**
-    * @see _.shortcuttedReduce
-    */
+     * @see _.shortcuttedReduce
+     */
     shortcuttedReduce<T>(
       this: LoDashImplicitWrapper<T[] | null | undefined>,
       callback: MemoListIterator<T, T, T[]>
     ): T | undefined;
 
     /**
-    * @see _.shortcuttedReduce
-    */
+     * @see _.shortcuttedReduce
+     */
     shortcuttedReduce<T>(
       this: LoDashImplicitWrapper<List<T> | null | undefined>,
       callback: MemoListIterator<T, T, List<T>>
     ): T | undefined;
 
     /**
-    * @see _.shortcuttedReduce
-    */
+     * @see _.shortcuttedReduce
+     */
     shortcuttedReduce<T extends object>(
       this: LoDashImplicitWrapper<T | null | undefined>,
       callback: MemoObjectIterator<T[keyof T], T[keyof T], T>
@@ -187,8 +187,8 @@ declare module 'lodash' {
 
   interface LoDashExplicitWrapper<TValue> {
     /**
-    * @see _.shortcuttedReduce
-    */
+     * @see _.shortcuttedReduce
+     */
     shortcuttedReduce<T, TResult>(
       this: LoDashExplicitWrapper<T[] | null | undefined>,
       callback: MemoListIterator<T, TResult, T[]>,
@@ -196,8 +196,8 @@ declare module 'lodash' {
     ): LoDashExplicitWrapper<TResult>;
 
     /**
-    * @see _.shortcuttedReduce
-    */
+     * @see _.shortcuttedReduce
+     */
     shortcuttedReduce<T, TResult>(
       this: LoDashExplicitWrapper<List<T> | null | undefined>,
       callback: MemoListIterator<T, TResult, List<T>>,
@@ -205,8 +205,8 @@ declare module 'lodash' {
     ): LoDashExplicitWrapper<TResult>;
 
     /**
-    * @see _.shortcuttedReduce
-    */
+     * @see _.shortcuttedReduce
+     */
     shortcuttedReduce<T extends object, TResult>(
       this: LoDashExplicitWrapper<T | null | undefined>,
       callback: MemoObjectIterator<T[keyof T], TResult, T>,
@@ -214,24 +214,24 @@ declare module 'lodash' {
     ): LoDashExplicitWrapper<TResult>;
 
     /**
-    * @see _.shortcuttedReduce
-    */
+     * @see _.shortcuttedReduce
+     */
     shortcuttedReduce<T>(
       this: LoDashExplicitWrapper<T[] | null | undefined>,
       callback: MemoListIterator<T, T, T[]>
     ): LoDashExplicitWrapper<T | undefined>;
 
     /**
-    * @see _.shortcuttedReduce
-    */
+     * @see _.shortcuttedReduce
+     */
     shortcuttedReduce<T>(
       this: LoDashExplicitWrapper<List<T> | null | undefined>,
       callback: MemoListIterator<T, T, List<T>>
     ): LoDashExplicitWrapper<T | undefined>;
 
     /**
-    * @see _.shortcuttedReduce
-    */
+     * @see _.shortcuttedReduce
+     */
     shortcuttedReduce<T extends object>(
       this: LoDashExplicitWrapper<T | null | undefined>,
       callback: MemoObjectIterator<T[keyof T], T[keyof T], T>
