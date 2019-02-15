@@ -1,8 +1,8 @@
-const fromPairsMap = require('../src/fromPairsMap')
-const chai = require('chai')
-const sinon = require('sinon')
-const { expect } = chai
-chai.use(require('sinon-chai'))
+import fromPairsMap from '../../src/fromPairsMap'
+import { expect, use as chaiUse } from 'chai'
+import sinonChai from 'sinon-chai'
+import * as sinon from 'sinon'
+chaiUse(sinonChai)
 
 describe('fromPairsMap', function () {
   it('should return an object', function () {

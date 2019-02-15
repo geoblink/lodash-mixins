@@ -1,17 +1,18 @@
-const shortcuttedReduce = require('../src/shortcuttedReduce')
-const chai = require('chai')
-const sinon = require('sinon')
-const { expect } = chai
+import shortcuttedReduce from '../../src/shortcuttedReduce'
+import { expect, use as chaiUse } from 'chai'
+import sinonChai from 'sinon-chai'
+import * as sinon from 'sinon'
+chaiUse(sinonChai)
+
 const sandbox = sinon.createSandbox()
-chai.use(require('sinon-chai'))
 
 describe('shortcuttedReduce', function () {
   const helpers = {
-    returnTrue () {
+    returnTrue (): boolean {
       return true
     },
 
-    returnAccumulator (accum) {
+    returnAccumulator<S> (accum: S): S {
       return accum
     }
   }
@@ -38,8 +39,9 @@ describe('shortcuttedReduce', function () {
       const list = ['a', 'b', 'c', 'd']
       const result = shortcuttedReduce(list, helpers.returnAccumulator, false)
       expect(helpers.returnAccumulator).to.have.callCount(list.length)
-      for (let i = 0; i < Object.keys(list); i++) {
-        expect(helpers.returnAccumulator.getCall(i)).to.have.been.calledWith(false, list[i], i)
+      for (let i = 0; i < Object.keys(list).length; i++) {
+        const sinonStub = helpers.returnAccumulator as sinon.SinonStub
+        expect(sinonStub.getCall(i)).to.have.been.calledWith(false, list[i], i)
       }
       expect(result).to.be.equal(false)
     })
@@ -47,42 +49,44 @@ describe('shortcuttedReduce', function () {
 
   describe('with objects', function () {
     it('should finish early on change', function () {
-      const list = { a: 'b', c: 'd', e: 'f', g: 'h' }
+      const list: { [key: string]: string } = { a: 'b', c: 'd', e: 'f', g: 'h' }
       const result = shortcuttedReduce(list, helpers.returnTrue, false)
+      const firstKey = Object.keys(list)[0]
       expect(helpers.returnTrue).to.be.calledOnce // eslint-disable-line no-unused-expressions
-      expect(helpers.returnTrue).to.be.calledWith(false, list[Object.keys(list)[0]], Object.keys(list)[0])
+      expect(helpers.returnTrue).to.be.calledWith(false, list[firstKey], firstKey)
       expect(result).to.be.equal(true)
     })
 
     it('should traverse all items if nothing changes', function () {
-      const list = { a: 'b', c: 'd', e: 'f', g: 'h' }
+      const list: { [key: string]: string } = { a: 'b', c: 'd', e: 'f', g: 'h' }
       const result = shortcuttedReduce(list, helpers.returnAccumulator, false)
       expect(helpers.returnAccumulator).to.have.callCount(Object.keys(list).length)
-      for (let i = 0; i < Object.keys(list); i++) {
+      for (let i = 0; i < Object.keys(list).length; i++) {
         const key = Object.keys(list)[i]
-        expect(helpers.returnAccumulator.getCall(i)).to.have.been.calledWith(false, list[key], key)
+        const sinonStub = helpers.returnAccumulator as sinon.SinonStub
+        expect(sinonStub.getCall(i)).to.have.been.calledWith(false, list[key], key)
       }
       expect(result).to.be.equal(false)
     })
   })
 
   it('should throw error when reducing strings', function () {
-    expect(() => shortcuttedReduce('string', () => {}, false)).to.throw()
+    expect(() => shortcuttedReduce('string' as any as string[], () => {}, false as any)).to.throw()
   })
 
   it('should throw error when reducing numbers', function () {
-    expect(() => shortcuttedReduce(42, () => {}, false)).to.throw()
+    expect(() => shortcuttedReduce(42 as any as string[], () => {}, false as any)).to.throw()
   })
 
   it('should throw error when reducing booleans', function () {
-    expect(() => shortcuttedReduce(true, () => {}, false)).to.throw()
+    expect(() => shortcuttedReduce(true as any as string[], () => {}, false as any)).to.throw()
   })
 
   it('should throw error when using an object as accumulator', function () {
-    expect(() => shortcuttedReduce([], () => {}, {})).to.throw()
+    expect(() => shortcuttedReduce([], () => {}, {} as any)).to.throw()
   })
 
   it('should throw error when using an array as accumulator', function () {
-    expect(() => shortcuttedReduce([], () => {}, [])).to.throw()
+    expect(() => shortcuttedReduce([], () => {}, [] as any)).to.throw()
   })
 })

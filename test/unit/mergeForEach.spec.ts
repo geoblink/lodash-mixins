@@ -1,9 +1,10 @@
-const mergeForEach = require('../src/mergeForEach')
-const { SORTING_ORDER } = require('../src/constants')
-const chai = require('chai')
-const sinon = require('sinon')
-const { expect } = chai
-chai.use(require('sinon-chai'))
+import mergeForEach, { ComparisonResult } from '../../src/mergeForEach'
+import { ValueOf } from '../../src/types'
+import { SORTING_ORDER } from '../../src/constants'
+import { expect, use as chaiUse } from 'chai'
+import sinonChai from 'sinon-chai'
+import * as sinon from 'sinon'
+chaiUse(sinonChai)
 
 describe('mergeForEach', function () {
   const lhsBarcelona = { id: 0, name: 'Barcelona' }
@@ -83,10 +84,31 @@ describe('mergeForEach', function () {
     })
   })
 
-  function buildTestCases ({
+  function buildTestCases<
+    L extends any,
+    R extends any,
+    LHSItem extends ValueOf<L>,
+    RHSItem extends ValueOf<R>,
+    LHSItemKey extends keyof LHSItem,
+    RHSItemKey extends keyof RHSItem
+  > ({
     lhs, rhs,
     lhsIteratee, rhsIteratee, comparator,
     leftCallback, innerCallback, rightCallback
+  }: {
+    lhs: L,
+    rhs: R,
+    lhsIteratee: LHSItemKey | ((item: LHSItem) => any),
+    rhsIteratee: RHSItemKey | ((item: RHSItem) => any),
+    innerCallback?: (lhsItem: LHSItem, rhsItem: RHSItem) => void,
+    leftCallback?: (lhsItem: LHSItem) => void,
+    rightCallback?: (rhsItem: RHSItem) => void,
+    comparator?: (params: {
+      lhsItem: LHSItem,
+      rhsItem: RHSItem,
+      getLHSValue: (lhsItem: LHSItem) => any,
+      getRHSValue: (rhsItem: RHSItem) => any
+    }) => ComparisonResult
   }) {
     it('Should call leftCallback for non-matching values in lhs', function () {
       mergeForEach(lhs, rhs, {

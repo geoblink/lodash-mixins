@@ -1,6 +1,5 @@
-const mGet = require('../src/mGet')
-const chai = require('chai')
-const { expect } = chai
+import mGet from '../../src/mGet'
+import { expect } from 'chai'
 
 describe('mGet', function () {
   it('should return values in the same order as required', function () {
@@ -22,10 +21,10 @@ describe('mGet', function () {
     }
     const defaultValue = 'default value taken'
 
-    const firstResult = mGet(object, ['missing'], defaultValue)
+    const firstResult = mGet(object, ['missing'] as any as 'a'[], defaultValue)
     expect(firstResult).to.deep.equal([defaultValue])
 
-    const secondResult = mGet(object, ['a', 'missing'], defaultValue)
+    const secondResult = mGet(object, ['a', 'missing'] as any as 'a'[], defaultValue)
     expect(secondResult).to.deep.equal([object.a, defaultValue])
   })
 

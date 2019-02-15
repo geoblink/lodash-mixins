@@ -1,6 +1,5 @@
-const getTruthyKeys = require('../src/getTruthyKeys')
-const chai = require('chai')
-const { expect } = chai
+import getTruthyKeys from '../../src/getTruthyKeys'
+import { expect } from 'chai'
 
 describe('getTruthyKeys', function () {
   it('should return truthy keys', function () {

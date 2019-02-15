@@ -1,8 +1,8 @@
-const mapNonNil = require('../src/mapNonNil')
-const chai = require('chai')
-const sinon = require('sinon')
-const { expect } = chai
-chai.use(require('sinon-chai'))
+import mapNonNil from '../../src/mapNonNil'
+import { expect, use as chaiUse } from 'chai'
+import sinonChai from 'sinon-chai'
+import * as sinon from 'sinon'
+chaiUse(sinonChai)
 
 describe('mapNonNil', function () {
   describe('with arrays', function () {

@@ -1,6 +1,5 @@
-const hasTruthyValues = require('../src/hasTruthyValues')
-const chai = require('chai')
-const { expect } = chai
+import hasTruthyValues from '../../src/hasTruthyValues'
+import { expect } from 'chai'
 
 describe('hasTruthyValues', function () {
   it('should return false if there are no truthy keys', function () {
