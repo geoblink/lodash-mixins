@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import lodashMixins from '../../src/index'
+import lodashMixins from '../..'
 import { expect } from 'chai'
 
 import injectedMethods from '../exportedMethods'
