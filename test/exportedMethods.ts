@@ -1,5 +1,6 @@
 export default [
   'fromPairsMap',
+  'fromPairsMapNonNil',
   'getTruthyKeys',
   'hasTruthyValues',
   'mapNonNil',

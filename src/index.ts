@@ -1,4 +1,5 @@
 import fromPairsMap from './fromPairsMap'
+import fromPairsMapNonNil from './fromPairsMapNonNil'
 import getTruthyKeys from './getTruthyKeys'
 import hasTruthyValues from './hasTruthyValues'
 import mapNonNil from './mapNonNil'
@@ -15,6 +16,7 @@ import { LoDashStatic } from 'lodash'
 export default function (_: LoDashStatic) {
   _.mixin({
     fromPairsMap: fromPairsMap,
+    fromPairsMapNonNil: fromPairsMapNonNil,
     getTruthyKeys: getTruthyKeys,
     hasTruthyValues: hasTruthyValues,
     mapNonNil: mapNonNil,
