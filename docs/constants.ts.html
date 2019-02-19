@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      constants.js - Documentation
+      constants.ts - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -78,7 +78,7 @@
   <div id="main">
     
       <h1 class="page-title">
-        constants.js
+        constants.ts
       </h1>
     
 
@@ -89,20 +89,17 @@
   <article>
     <pre class="prettyprint source linenums"><code>/**
  * Possible results when comparing two items.
- * @readonly
- * @constant
- * @enum {SortingOrder}
  */
-var SORTING_ORDER = {
+enum SORTING_ORDER {
   /** Any negative number */
-  LHS_BEFORE_RHS: -1,
+  LHS_BEFORE_RHS = -1,
   /** Any positive number */
-  LHS_AFTER_RHS: 1,
+  LHS_AFTER_RHS = 1,
   /** Zero */
-  EQUAL: 0
+  EQUAL = 0
 }
 
-module.exports = { SORTING_ORDER }
+export { SORTING_ORDER }
 </code></pre>
   </article>
 </section>

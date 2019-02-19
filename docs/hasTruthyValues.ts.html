@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      getTruthyKeys.js - Documentation
+      hasTruthyValues.ts - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -78,7 +78,7 @@
   <div id="main">
     
       <h1 class="page-title">
-        getTruthyKeys.js
+        hasTruthyValues.ts
       </h1>
     
 
@@ -87,27 +87,59 @@
 
 <section>
   <article>
-    <pre class="prettyprint source linenums"><code>var _ = require('lodash')
+    <pre class="prettyprint source linenums"><code>import shortcuttedReduce from './shortcuttedReduce'
 
-module.exports = getTruthyKeys
+export default hasTruthyValues
 
 /**
- * Gets the keys associated with truthy values in given collection.
+ * Returns whether given collection has at least one truthy value for one of its
+ * keys.
  *
- * @param {Array|Object} collection Collection to iterate over.
- * @param {Function} parseKeyFunction Function invoked per iteration. This
- * function takes as parameter a key of a truthy value. The value it returns
- * will be used in resulting list. Note that if this function returns a falsy
- * value value, the key won't be present in resulting collection.
- * @returns {Array} New list with just the keys of truthy entries, for which
- * `parseKeyFunction` returned a truthy value.
+ * This function stops traversing the collection as soon as it finds a truthy
+ * value.
+ *
+ * @param collection Collection to iterate over.
+ * @returns `true` if there's at least one value which is truthy.
  */
-function getTruthyKeys (collection, parseKeyFunction) {
-  var isFunction = _.isFunction(parseKeyFunction)
-  return _.filter(_.map(collection, function (value, key) {
-    if (!value) return false
-    return isFunction ? parseKeyFunction(key) : key
-  }))
+function hasTruthyValues&lt;Collection extends object> (collection: Collection): boolean {
+  return shortcuttedReduce(
+    collection,
+    (accum, value) => accum || !!value,
+    false
+  )
+}
+
+declare module 'lodash' {
+  interface LoDashStatic {
+    /**
+     * Returns multiple values of an object, defaulting missing ones to a common
+     * default.
+     *
+     * @param object Object to be queried.
+     * @param arrayOfKeys Array with the paths of the properties to get.
+     * @param defaultValue The value returned for missing resolved values.
+     * @return New array with values for given key paths or default one.
+     */
+    hasTruthyValues&lt;Collection extends object>(object: Collection): boolean
+  }
+
+  interface LoDashImplicitWrapper&lt;TValue> {
+    /**
+     * @see _.hasTruthyValues
+     */
+    hasTruthyValues(
+      this: LoDashImplicitWrapper&lt;TValue | null | undefined>
+    ): LoDashImplicitWrapper&lt;boolean>
+  }
+
+  interface LoDashExplicitWrapper&lt;TValue> {
+    /**
+    * @see _.hasTruthyValues
+    */
+    hasTruthyValues(
+      this: LoDashExplicitWrapper&lt;TValue | null | undefined>
+    ): LoDashExplicitWrapper&lt;boolean>
+  }
 }
 </code></pre>
   </article>

@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      hasTruthyValues.js - Documentation
+      mGet.ts - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -78,7 +78,7 @@
   <div id="main">
     
       <h1 class="page-title">
-        hasTruthyValues.js
+        mGet.ts
       </h1>
     
 
@@ -87,24 +87,84 @@
 
 <section>
   <article>
-    <pre class="prettyprint source linenums"><code>var shortcuttedReduce = require('./shortcuttedReduce')
+    <pre class="prettyprint source linenums"><code>import _ from 'lodash'
 
-module.exports = hasTruthyValues
+export default mGet
 
 /**
- * Returns whether given collection has at least one truthy value for one of its
- * keys.
+ * Returns multiple values of an object, defaulting missing ones to a common
+ * default.
  *
- * This function stops traversing the collection as soon as it finds a truthy
- * value.
- *
- * @param {Object|Array} collection Collection to iterate over.
- * @returns {Boolean} `true` if there's at least one value which is truthy.
+ * @param object Object to be queried.
+ * @param arrayOfKeys Array with the paths of the properties to get.
+ * @param defaultValue The value returned for missing resolved values.
+ * @return New array with values for given key paths or default one.
  */
-function hasTruthyValues (collection) {
-  return shortcuttedReduce(collection, function (accum, value) {
-    return accum || !!value
-  })
+function mGet&lt;
+  Collection extends object,
+  CollectionKey extends keyof Collection,
+  ReturnValue
+> (
+  object: Collection,
+  arrayOfKeys: CollectionKey[],
+  defaultValue?: ReturnValue
+): (ReturnValue | Collection[CollectionKey] | undefined)[] {
+  return _.map(arrayOfKeys, getValueOrDefault)
+
+  function getValueOrDefault (key: CollectionKey): Collection[CollectionKey] | ReturnValue | undefined {
+    return _.get(object, key, defaultValue)
+  }
+}
+
+declare module 'lodash' {
+  interface LoDashStatic {
+    /**
+     * Returns multiple values of an object, defaulting missing ones to a common
+     * default.
+     *
+     * @param object Object to be queried.
+     * @param arrayOfKeys Array with the paths of the properties to get.
+     * @param defaultValue The value returned for missing resolved values.
+     * @return New array with values for given key paths or default one.
+     */
+    mGet&lt;
+      Collection extends object,
+      CollectionKey extends keyof Collection,
+      ReturnValue
+    > (
+      object: Collection,
+      arrayOfKeys: CollectionKey[],
+      defaultValue?: ReturnValue
+    ): (ReturnValue | Collection[CollectionKey] | undefined)[]
+  }
+
+  interface LoDashImplicitWrapper&lt;TValue> {
+    /**
+     * @see _.mGet
+     */
+    mGet&lt;
+      CollectionKey extends keyof TValue,
+      ReturnValue
+    >(
+      this: LoDashImplicitWrapper&lt;TValue | null | undefined>,
+      arrayOfKeys: CollectionKey[],
+      defaultValue?: ReturnValue
+    ): LoDashImplicitWrapper&lt;(ReturnValue | TValue[CollectionKey] | undefined)[]>
+  }
+
+  interface LoDashExplicitWrapper&lt;TValue> {
+    /**
+    * @see _.mGet
+    */
+    mGet&lt;
+      CollectionKey extends keyof TValue,
+      ReturnValue
+    >(
+      this: LoDashExplicitWrapper&lt;TValue | null | undefined>,
+      arrayOfKeys: CollectionKey[],
+      defaultValue?: ReturnValue
+    ): LoDashExplicitWrapper&lt;(ReturnValue | TValue[CollectionKey] | undefined)[]>
+  }
 }
 </code></pre>
   </article>

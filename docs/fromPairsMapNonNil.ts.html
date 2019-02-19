@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      fromPairsMapNonNil.js - Documentation
+      fromPairsMapNonNil.ts - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -78,7 +78,7 @@
   <div id="main">
     
       <h1 class="page-title">
-        fromPairsMapNonNil.js
+        fromPairsMapNonNil.ts
       </h1>
     
 
@@ -87,20 +87,132 @@
 
 <section>
   <article>
-    <pre class="prettyprint source linenums"><code>const _ = require('lodash')
-const mapNonNil = require('./mapNonNil')
-module.exports = fromPairsMapNonNil
+    <pre class="prettyprint source linenums"><code>import _, { ObjectIterator } from 'lodash'
+
+import mapNonNil from './mapNonNil'
+
+export default fromPairsMapNonNil
 
 /**
- * Applies `fromPairs` to the result of mapping and filtering `nil` values given `iteratee` to given
- * collection.
+ * Applies `fromPairs` to the result of mapping and filtering `nil` values given
+ * `iteratee` to given collection.
  *
- * @param {Array|Object} collection Collection to iterate over
- * @param {Function} iteratee Function invoked per iteration
- * @returns {Object} New object
+ * @param collection Collection to iterate over
+ * @param iteratee Function invoked per iteration
+ * @returns New object
  */
-function fromPairsMapNonNil (collection, iteratee) {
-  return _.fromPairs(mapNonNil(collection, iteratee))
+export function fromPairsMapNonNil &lt;
+  CollectionItem extends any,
+  Collection extends ArrayLike&lt;CollectionItem | null | undefined>,
+  PropertyName,
+  TResult
+> (
+  collection: Collection,
+  iteratee: ObjectIterator&lt;CollectionItem, [PropertyName, TResult] | null | undefined>
+) {
+  return _.fromPairs(mapNonNil(collection, iteratee) as any) // Cast to any since this typecheck is user's responsibility
+}
+
+declare module 'lodash' {
+  interface LoDashStatic {
+    /**
+     * Applies `fromPairs` to the result of mapping and filtering `nil` values
+     * given `iteratee` to given collection.
+     *
+     * @param collection Collection to iterate over
+     * @param iteratee Function invoked per iteration
+     * @returns New object
+     */
+    fromPairsMapNonNil&lt;T, PropertyName, TResult>(
+      collection: T[] | null | undefined,
+      iteratee: ArrayIterator&lt;T, [PropertyName, TResult] | null | undefined>
+    ): Dictionary&lt;TResult>
+
+    /**
+     * @see _.fromPairsMapNonNil
+     */
+    fromPairsMapNonNil&lt;T, TResult>(
+      collection: List&lt;T> | null | undefined,
+      iteratee: ListIterator&lt;T, [PropertyName, TResult] | null | undefined>
+    ): Dictionary&lt;TResult>
+
+    /**
+     * @see _.fromPairsMapNonNil
+     */
+    fromPairsMapNonNil&lt;T>(
+      collection: List&lt;T> | Dictionary&lt;T> | NumericDictionary&lt;T> | null | undefined
+    ): Dictionary&lt;T>
+
+    /**
+     * @see _.fromPairsMapNonNil
+     */
+    fromPairsMapNonNil&lt;T extends object, TResult>(
+      collection: T | null | undefined,
+      iteratee: ObjectIterator&lt;T, [PropertyName, TResult] | null | undefined>
+    ): Dictionary&lt;TResult>
+  }
+
+  interface LoDashImplicitWrapper&lt;TValue> {
+    /**
+     * @see _.fromPairsMapNonNil
+     */
+    fromPairsMapNonNil&lt;T, TResult>(
+      this: LoDashImplicitWrapper&lt;T[] | null | undefined>,
+      iteratee: ArrayIterator&lt;T, [PropertyName, TResult] | null | undefined>
+    ): LoDashImplicitWrapper&lt;Dictionary&lt;TResult>>
+
+    /**
+     * @see _.fromPairsMapNonNil
+     */
+    fromPairsMapNonNil&lt;T, TResult>(
+      this: LoDashImplicitWrapper&lt;List&lt;T> | null | undefined>,
+      iteratee: ListIterator&lt;T, [PropertyName, TResult] | null | undefined>
+    ): LoDashImplicitWrapper&lt;Dictionary&lt;TResult>>
+
+    /**
+     * @see _.fromPairsMapNonNil
+     */
+    fromPairsMapNonNil&lt;T>(this: LoDashImplicitWrapper&lt;List&lt;T> | Dictionary&lt;T> | NumericDictionary&lt;T> | null | undefined>): LoDashImplicitWrapper&lt;Dictionary&lt;T>>
+
+    /**
+     * @see _.fromPairsMapNonNil
+     */
+    fromPairsMapNonNil&lt;T extends object, TResult>(
+      this: LoDashImplicitWrapper&lt;T | null | undefined>,
+      iteratee: ObjectIterator&lt;T, [PropertyName, TResult] | null | undefined>
+    ): LoDashImplicitWrapper&lt;Dictionary&lt;TResult>>
+  }
+
+  interface LoDashExplicitWrapper&lt;TValue> {
+    /**
+     * @see _.fromPairsMapNonNil
+     */
+    fromPairsMapNonNil&lt;T, TResult>(
+      this: LoDashExplicitWrapper&lt;T[] | null | undefined>,
+      iteratee: ArrayIterator&lt;T, [PropertyName, TResult] | null | undefined>
+    ): LoDashExplicitWrapper&lt;Dictionary&lt;TResult>>
+
+    /**
+     * @see _.fromPairsMapNonNil
+     */
+    fromPairsMapNonNil&lt;T, TResult>(
+      this: LoDashExplicitWrapper&lt;List&lt;T> | null | undefined>,
+      iteratee: ListIterator&lt;T, [PropertyName, TResult] | null | undefined>
+    ): LoDashExplicitWrapper&lt;Dictionary&lt;TResult>>
+
+    /**
+     * @see _.fromPairsMapNonNil
+     */
+    fromPairsMapNonNil&lt;T>(this: LoDashExplicitWrapper&lt;List&lt;T> | Dictionary&lt;T> | NumericDictionary&lt;T> | null | undefined>): LoDashExplicitWrapper&lt;Dictionary&lt;T>>
+
+    /**
+     * @see _.fromPairsMapNonNil
+     */
+    fromPairsMapNonNil&lt;T extends object, TResult>(
+      this: LoDashExplicitWrapper&lt;T | null | undefined>,
+      iteratee: ObjectIterator&lt;T, [PropertyName, TResult] | null | undefined>
+    ): LoDashExplicitWrapper&lt;Dictionary&lt;TResult>>
+  }
 }
 </code></pre>
   </article>
