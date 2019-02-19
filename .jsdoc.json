@@ -5,8 +5,14 @@
       "package.json",
       "README.md"
     ],
-    "includePattern": ".js$",
+    "includePattern": ".ts$",
     "excludePattern": "(node_modules/|docs)"
+  },
+  "plugins": ["node_modules/jsdoc-babel"],
+  "babel": {
+    "babelrc": false,
+    "extensions": ["ts"],
+    "presets": ["@babel/preset-typescript"]
   },
   "templates": {
     "referenceTitle": "Geoblink Lodash Mixins",
