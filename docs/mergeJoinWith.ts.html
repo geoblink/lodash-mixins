@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      hasTruthyValues.ts - Documentation
+      mergeJoinWith.ts - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -78,7 +78,7 @@
   <div id="main">
     
       <h1 class="page-title">
-        hasTruthyValues.ts
+        mergeJoinWith.ts
       </h1>
     
 
@@ -87,59 +87,112 @@
 
 <section>
   <article>
-    <pre class="prettyprint source linenums"><code>import shortcuttedReduce from './shortcuttedReduce'
+    <pre class="prettyprint source linenums"><code>import { SORTING_ORDER } from './constants'
+import { ValueOf } from './types'
 
-export default hasTruthyValues
+import mergeForEach from './mergeForEach'
+
+export default mergeJoinWith
+
+export type ComparisonResult = number
 
 /**
- * Returns whether given collection has at least one truthy value for one of its
- * keys.
+ * Divide-and-conquer-based join function to merge two arrays into a new one.
  *
- * This function stops traversing the collection as soon as it finds a truthy
- * value.
+ * Both collections must be sortable. They will be sorted ascendently using
+ * value returned by the corresponding iteratee.
  *
- * @param collection Collection to iterate over.
- * @returns `true` if there's at least one value which is truthy.
+ * @param lhs A collection of elements.
+ * @param rhs A collection of elements.
+ * @param options Options for comparison.
+ * @param options.lhsIteratee Iteratee used to get the value used to sort `lhs`.
+ * Returned value will be used to sort the collection before running the
+ * divide-and-conquer algorithm.
+ * @param options.rhsIteratee Iteratee used to get the value used to sort `rhs`.
+ * Returned value will be used to sort the collection
+ * before running the divide-and-conquer algorithm.
+ * @param options.getInnerJoinedItem Callback called when there are two matching
+ * elements. Boths elements are passed as arguments. Must return the resulting
+ * element of merging both parameters.
+ * @param options.getLeftJoinedItem Callback called when there are elements in
+ * the left-hand-side collection which cannot be matched with any element of the
+ * right-hand-side collection. Must return the element to be added to results array.
+ * @param options.getRightJoinedItem Callback called when there are elements in
+ * the right-hand-side collection which cannot be matched with any element of the
+ * left-hand-side collection. Must return the element to be added to results array.
+ * @param comparator Function used to compare an item of `lhs` collection against
+ * an item of `rhs` collection. Negative values mean that `lhs` item is **before**
+ * `rhs` item, positive values that `lhs` item is **after** `rhs` item and `0`
+ * that both items are equivalent in terms of sorting. Default implementation is
+ * equivalent to `&lt;` operator. Will receive as 3rd and 4th parameters the
+ * iteratees used to get sorting value for `lhs` and `rhs`.
  */
-function hasTruthyValues&lt;Collection extends object> (collection: Collection): boolean {
-  return shortcuttedReduce(
-    collection,
-    (accum, value) => accum || !!value,
-    false as boolean
-  )
-}
+function mergeJoinWith&lt;
+  L extends any,
+  R extends any,
+  InnerJoinedItem extends any,
+  LeftJoinedItem extends any,
+  RightJoinedItem extends any,
+  LHSItem extends ValueOf&lt;L>,
+  RHSItem extends ValueOf&lt;R>,
+  LHSItemKey extends keyof LHSItem,
+  RHSItemKey extends keyof RHSItem
+> (
+  lhs: L | LHSItem[],
+  rhs: R | RHSItem[],
+  {
+    lhsIteratee = (lhsItem) => lhsItem,
+    rhsIteratee = (rhsItem) => rhsItem,
+    getInnerJoinedItem,
+    getLeftJoinedItem = (lhsItem) => lhsItem,
+    getRightJoinedItem = (rhsItem) => rhsItem,
+    comparator = function ({ lhsItem, rhsItem, getLHSValue, getRHSValue }) {
+      const lhsValue = getLHSValue(lhsItem) as any
+      const rhsValue = getRHSValue(rhsItem) as any
 
-declare module 'lodash' {
-  interface LoDashStatic {
-    /**
-     * Returns multiple values of an object, defaulting missing ones to a common
-     * default.
-     *
-     * @param object Object to be queried.
-     * @param arrayOfKeys Array with the paths of the properties to get.
-     * @param defaultValue The value returned for missing resolved values.
-     * @return New array with values for given key paths or default one.
-     */
-    hasTruthyValues&lt;Collection extends object>(object: Collection): boolean
+      if (lhsValue &lt; rhsValue) {
+        return SORTING_ORDER.LHS_BEFORE_RHS
+      } else if (lhsValue > rhsValue) {
+        return SORTING_ORDER.LHS_AFTER_RHS
+      } else {
+        return SORTING_ORDER.EQUAL
+      }
+    }
+  }: {
+    lhsIteratee?: LHSItemKey | ((item: LHSItem) => any),
+    rhsIteratee?: RHSItemKey | ((item: RHSItem) => any),
+    getInnerJoinedItem: (lhsItem: LHSItem, rhsItem: RHSItem) => InnerJoinedItem,
+    getLeftJoinedItem?: (lhsItem: LHSItem) => LeftJoinedItem,
+    getRightJoinedItem?: (rhsItem: RHSItem) => RightJoinedItem,
+    comparator?: (params: {
+      lhsItem: LHSItem,
+      rhsItem: RHSItem,
+      getLHSValue: (lhsItem: LHSItem) => any,
+      getRHSValue: (rhsItem: RHSItem) => any
+    }) => ComparisonResult
   }
+) {
+  const result: (InnerJoinedItem|LeftJoinedItem|RightJoinedItem)[] = []
 
-  interface LoDashImplicitWrapper&lt;TValue> {
-    /**
-     * @see _.hasTruthyValues
-     */
-    hasTruthyValues(
-      this: LoDashImplicitWrapper&lt;TValue | null | undefined>
-    ): LoDashImplicitWrapper&lt;boolean>
-  }
+  mergeForEach(lhs, rhs, {
+    lhsIteratee,
+    rhsIteratee,
+    comparator,
+    innerCallback (lhsItem, rhsItem) {
+      const joinedItem = getInnerJoinedItem(lhsItem, rhsItem)
+      result.push(joinedItem)
+    },
+    leftCallback (lhsItem) {
+      const joinedItem = getLeftJoinedItem(lhsItem)
+      result.push(joinedItem)
+    },
+    rightCallback (rhsItem) {
+      const joinedItem = getRightJoinedItem(rhsItem)
+      result.push(joinedItem)
+    }
+  })
 
-  interface LoDashExplicitWrapper&lt;TValue> {
-    /**
-    * @see _.hasTruthyValues
-    */
-    hasTruthyValues(
-      this: LoDashExplicitWrapper&lt;TValue | null | undefined>
-    ): LoDashExplicitWrapper&lt;boolean>
-  }
+  return result
 }
 </code></pre>
   </article>
