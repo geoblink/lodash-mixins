@@ -4,6 +4,7 @@ import getTruthyKeys from './getTruthyKeys'
 import hasTruthyValues from './hasTruthyValues'
 import mapNonNil from './mapNonNil'
 import mergeForEach from './mergeForEach'
+import mergeJoinWith from './mergeJoinWith'
 import mGet from './mGet'
 import shortcuttedReduce from './shortcuttedReduce'
 import { LoDashStatic } from 'lodash'
@@ -21,6 +22,7 @@ export default function (_: LoDashStatic) {
     hasTruthyValues: hasTruthyValues,
     mapNonNil: mapNonNil,
     mergeForEach: mergeForEach,
+    mergeJoinWith: mergeJoinWith,
     mGet: mGet,
     shortcuttedReduce: shortcuttedReduce
   })

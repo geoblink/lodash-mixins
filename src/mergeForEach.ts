@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import { getterFromIteratee } from './common'
 import { SORTING_ORDER } from './constants'
 import { ValueOf } from './types'
 
@@ -124,15 +125,6 @@ function mergeForEach<
   while (rhsIndex < sortedRHS.length) {
     rightCallback(sortedRHS[rhsIndex] as RHSItem)
     rhsIndex++
-  }
-
-  function getterFromIteratee<
-    Item extends any,
-    ItemKey extends keyof Item
-  > (iteratee: ItemKey | ((item: Item) => any)): (item: Item) => any {
-    return _.isFunction(iteratee)
-      ? iteratee
-      : ((item: Item) => _.get(item, iteratee as ItemKey))
   }
 }
 
