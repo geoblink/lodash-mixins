@@ -1,8 +1,19 @@
+# v1.2.1
+
+Fixed:
+
+- Fix `mergeForEach` documentation
+- Export proper TypeScript definitions
+
+# v1.2.0
+
+Ported to Typescript.
+
 # v1.1.2
 
 Fixes:
 
-- Fix mapNonNil require path in fromPairsMapNonNil file
+- Fix `mapNonNil` require path in `fromPairsMapNonNil` file
 
 # v1.1.1
 
