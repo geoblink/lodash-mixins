@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import * as _ from 'lodash'
 import { SORTING_ORDER } from './constants'
 import { ValueOf } from './types'
 
