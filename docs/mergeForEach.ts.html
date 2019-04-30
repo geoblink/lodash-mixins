@@ -255,13 +255,13 @@ declare module 'lodash' {
      * @param options.rightCallback Callback called when there are elements in
      * the right-hand-side collection which cannot be matched with any element
      * of the left-hand-side collection.
-     * @param comparator Function used to compare an item of `lhs` collection
-     * against an item of `rhs` collection. Negative values mean that `lhs` item
-     * is **before** `rhs` item, positive values that `lhs` item is **after**
-     * `rhs` item and `0` that both items are equivalent in terms of sorting.
-     * Default implementation is equivalent to `&lt;` operator. Will receive as 3rd
-     * and 4th parameters the iteratees used to get sorting value for `lhs` and
-     * `rhs`.
+     * @param options.comparator Function used to compare an item of `lhs`
+     * collection against an item of `rhs` collection. Negative values mean that
+     * `lhs` item is **before** `rhs` item, positive values that `lhs` item is
+     * **after** `rhs` item and `0` that both items are equivalent in terms of
+     * sorting. Default implementation is equivalent to `&lt;` operator. Will
+     * receive as 3rd and 4th parameters the iteratees used to get sorting value
+     * for `lhs` and `rhs`.
      */
     mergeForEach&lt;
       L extends any,
