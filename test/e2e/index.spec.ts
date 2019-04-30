@@ -15,7 +15,7 @@ describe('Exported package', function () {
 
   describe('When loading exported package', function () {
     before('Load mixins', function () {
-      lodashMixins(_)
+      lodashMixins(_ as unknown as _.LoDashStatic)
     })
 
     for (const method of injectedMethods) {
