@@ -21,7 +21,7 @@
   <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
   <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
 
-  
+
 
   <!-- start Mixpanel -->
   <script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
@@ -52,17 +52,17 @@
     <ul>
       <li >
         <a href="index.html">
-          
+
             <svg fill="#6D6D6D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
               <path d="M0 0h24v24H0z" fill="none"/>
             </svg>
-          
-          
+
+
         </a>
       </li>
 
-      
+
 
     </ul>
   </div>
@@ -76,18 +76,18 @@
   </nav>
 
   <div id="main">
-    
+
       <h1 class="page-title">
         mergeForEach.ts
       </h1>
-    
 
-    
-      
+
+
+
 
 <section>
   <article>
-    <pre class="prettyprint source linenums"><code>import _ from 'lodash'
+    <pre class="prettyprint source linenums"><code>import * as _ from 'lodash'
 import { getterFromIteratee } from './common'
 import { SORTING_ORDER } from './constants'
 import { ValueOf } from './types'
@@ -247,13 +247,13 @@ declare module 'lodash' {
      * @param options.rightCallback Callback called when there are elements in
      * the right-hand-side collection which cannot be matched with any element
      * of the left-hand-side collection.
-     * @param comparator Function used to compare an item of `lhs` collection
-     * against an item of `rhs` collection. Negative values mean that `lhs` item
-     * is **before** `rhs` item, positive values that `lhs` item is **after**
-     * `rhs` item and `0` that both items are equivalent in terms of sorting.
-     * Default implementation is equivalent to `&lt;` operator. Will receive as 3rd
-     * and 4th parameters the iteratees used to get sorting value for `lhs` and
-     * `rhs`.
+     * @param options.comparator Function used to compare an item of `lhs`
+     * collection against an item of `rhs` collection. Negative values mean that
+     * `lhs` item is **before** `rhs` item, positive values that `lhs` item is
+     * **after** `rhs` item and `0` that both items are equivalent in terms of
+     * sorting. Default implementation is equivalent to `&lt;` operator. Will
+     * receive as 3rd and 4th parameters the iteratees used to get sorting value
+     * for `lhs` and `rhs`.
      */
     mergeForEach&lt;
       L extends any,
@@ -347,7 +347,7 @@ declare module 'lodash' {
   </article>
 </section>
 
-    
+
 
 
   </div>
@@ -361,7 +361,7 @@ declare module 'lodash' {
   <script src="scripts/linenumber.js"></script>
   <script src="scripts/pagelocation.js"></script>
 
-  
-  
+
+
 </body>
 </html>

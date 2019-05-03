@@ -87,7 +87,7 @@
 
 <section>
   <article>
-    <pre class="prettyprint source linenums"><code>import _, { ObjectIterator } from 'lodash'
+    <pre class="prettyprint source linenums"><code>import * as _ from 'lodash'
 
 import mapNonNil from './mapNonNil'
 
@@ -108,7 +108,7 @@ export function fromPairsMapNonNil &lt;
   TResult
 > (
   collection: Collection,
-  iteratee: ObjectIterator&lt;CollectionItem, [PropertyName, TResult] | null | undefined>
+  iteratee: _.ObjectIterator&lt;CollectionItem, [PropertyName, TResult] | null | undefined>
 ) {
   return _.fromPairs(mapNonNil(collection, iteratee) as any) // Cast to any since this typecheck is user's responsibility
 }

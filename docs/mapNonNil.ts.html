@@ -87,7 +87,7 @@
 
 <section>
   <article>
-    <pre class="prettyprint source linenums"><code>import _, { ObjectIterator, Dictionary } from 'lodash'
+    <pre class="prettyprint source linenums"><code>import * as _ from 'lodash'
 
 export default mapNonNil
 
@@ -102,12 +102,12 @@ function mapNonNil&lt;
   CollectionItem extends any,
   Collection extends (
     ArrayLike&lt;CollectionItem | null | undefined> |
-    Dictionary&lt;CollectionItem | null | undefined>
+    _.Dictionary&lt;CollectionItem | null | undefined>
   ),
   ResultValue
 > (
   collection: Collection,
-  iteratee: ObjectIterator&lt;CollectionItem, ResultValue | null | undefined>
+  iteratee: _.ObjectIterator&lt;CollectionItem, ResultValue | null | undefined>
 ) {
   return _.filter(_.map(collection, iteratee), isNotNil)
 
