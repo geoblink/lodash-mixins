@@ -5,6 +5,7 @@ export default [
   'hasTruthyValues',
   'mapNonNil',
   'mergeForEach',
+  'mergeJoinWith',
   'mGet',
   'shortcuttedReduce'
 ]

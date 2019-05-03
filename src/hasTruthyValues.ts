@@ -16,7 +16,7 @@ function hasTruthyValues<Collection extends object> (collection: Collection): bo
   return shortcuttedReduce(
     collection,
     (accum, value) => accum || !!value,
-    false
+    false as boolean
   )
 }
 

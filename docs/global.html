@@ -70,7 +70,7 @@
       Geoblink Lodash Mixins
     </h3>
 
-    <h3 id="global-nav">Global</h3><ul><li><a href="global.html#SORTING_ORDER">SORTING_ORDER</a></li><li><a href="global.html#fromPairsMap">fromPairsMap</a></li><li><a href="global.html#fromPairsMapNonNil">fromPairsMapNonNil</a></li><li><a href="global.html#getTruthyKeys">getTruthyKeys</a></li><li><a href="global.html#hasTruthyValues">hasTruthyValues</a></li><li><a href="global.html#mGet">mGet</a></li><li><a href="global.html#mapNonNil">mapNonNil</a></li><li><a href="global.html#mergeForEach">mergeForEach</a></li><li><a href="global.html#shortcuttedReduce">shortcuttedReduce</a></li></ul>
+    <h3 id="global-nav">Global</h3><ul><li><a href="global.html#SORTING_ORDER">SORTING_ORDER</a></li><li><a href="global.html#fromPairsMap">fromPairsMap</a></li><li><a href="global.html#fromPairsMapNonNil">fromPairsMapNonNil</a></li><li><a href="global.html#getTruthyKeys">getTruthyKeys</a></li><li><a href="global.html#hasTruthyValues">hasTruthyValues</a></li><li><a href="global.html#mGet">mGet</a></li><li><a href="global.html#mapNonNil">mapNonNil</a></li><li><a href="global.html#mergeForEach">mergeForEach</a></li><li><a href="global.html#mergeJoinWith">mergeJoinWith</a></li><li><a href="global.html#shortcuttedReduce">shortcuttedReduce</a></li></ul>
   </nav>
 
   <div id="main">
@@ -1499,7 +1499,348 @@ iteratees used to get sorting value for `lhs` and `rhs`.
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="mergeForEach.ts.html">mergeForEach.ts</a>, <a href="mergeForEach.ts.html#line9">line 9</a>
+          <a href="mergeForEach.ts.html">mergeForEach.ts</a>, <a href="mergeForEach.ts.html#line10">line 10</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#mergeJoinWith">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="mergeJoinWith">
+      <span class="type-signature"></span>mergeJoinWith<span class="signature">(lhs, rhs, options, comparator)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    Divide-and-conquer-based join function to merge two arrays into a new one.
+
+Both collections must be sortable. They will be sorted ascendently using
+value returned by the corresponding iteratee.
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>lhs</code></td>
+        
+
+        <td class="type">
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          A collection of elements.
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>rhs</code></td>
+        
+
+        <td class="type">
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          A collection of elements.
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>options</code></td>
+        
+
+        <td class="type">
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          Options for comparison.
+          
+            <h6>Properties</h6>
+            
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>lhsIteratee</code></td>
+        
+
+        <td class="type">
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          Iteratee used to get the value used to sort `lhs`.
+Returned value will be used to sort the collection before running the
+divide-and-conquer algorithm.
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>rhsIteratee</code></td>
+        
+
+        <td class="type">
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          Iteratee used to get the value used to sort `rhs`.
+Returned value will be used to sort the collection
+before running the divide-and-conquer algorithm.
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>getInnerJoinedItem</code></td>
+        
+
+        <td class="type">
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          Callback called when there are two matching
+elements. Boths elements are passed as arguments. Must return the resulting
+element of merging both parameters.
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>getLeftJoinedItem</code></td>
+        
+
+        <td class="type">
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          Callback called when there are elements in
+the left-hand-side collection which cannot be matched with any element of the
+right-hand-side collection. Must return the element to be added to results array.
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>getRightJoinedItem</code></td>
+        
+
+        <td class="type">
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          Callback called when there are elements in
+the right-hand-side collection which cannot be matched with any element of the
+left-hand-side collection. Must return the element to be added to results array.
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>comparator</code></td>
+        
+
+        <td class="type">
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          Function used to compare an item of `lhs` collection against
+an item of `rhs` collection. Negative values mean that `lhs` item is **before**
+`rhs` item, positive values that `lhs` item is **after** `rhs` item and `0`
+that both items are equivalent in terms of sorting. Default implementation is
+equivalent to `<` operator. Will receive as 3rd and 4th parameters the
+iteratees used to get sorting value for `lhs` and `rhs`.
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="mergeJoinWith.ts.html">mergeJoinWith.ts</a>, <a href="mergeJoinWith.ts.html#line10">line 10</a>
         </li>
       </ul>
     </dd>

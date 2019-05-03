@@ -157,7 +157,7 @@ describe('mergeForEach', function () {
       })
     })
 
-    it('Should call innerCallback for non-matching values in both collections', function () {
+    it('Should call innerCallback for matching values in both collections', function () {
       mergeForEach(lhs, rhs, {
         lhsIteratee,
         rhsIteratee,

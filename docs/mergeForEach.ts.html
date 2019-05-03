@@ -72,7 +72,7 @@
       Geoblink Lodash Mixins
     </h3>
 
-    <h3 id="global-nav">Global</h3><ul><li><a href="global.html#SORTING_ORDER">SORTING_ORDER</a></li><li><a href="global.html#fromPairsMap">fromPairsMap</a></li><li><a href="global.html#fromPairsMapNonNil">fromPairsMapNonNil</a></li><li><a href="global.html#getTruthyKeys">getTruthyKeys</a></li><li><a href="global.html#hasTruthyValues">hasTruthyValues</a></li><li><a href="global.html#mGet">mGet</a></li><li><a href="global.html#mapNonNil">mapNonNil</a></li><li><a href="global.html#mergeForEach">mergeForEach</a></li><li><a href="global.html#shortcuttedReduce">shortcuttedReduce</a></li></ul>
+    <h3 id="global-nav">Global</h3><ul><li><a href="global.html#SORTING_ORDER">SORTING_ORDER</a></li><li><a href="global.html#fromPairsMap">fromPairsMap</a></li><li><a href="global.html#fromPairsMapNonNil">fromPairsMapNonNil</a></li><li><a href="global.html#getTruthyKeys">getTruthyKeys</a></li><li><a href="global.html#hasTruthyValues">hasTruthyValues</a></li><li><a href="global.html#mGet">mGet</a></li><li><a href="global.html#mapNonNil">mapNonNil</a></li><li><a href="global.html#mergeForEach">mergeForEach</a></li><li><a href="global.html#mergeJoinWith">mergeJoinWith</a></li><li><a href="global.html#shortcuttedReduce">shortcuttedReduce</a></li></ul>
   </nav>
 
   <div id="main">
@@ -88,6 +88,7 @@
 <section>
   <article>
     <pre class="prettyprint source linenums"><code>import * as _ from 'lodash'
+import { getterFromIteratee } from './common'
 import { SORTING_ORDER } from './constants'
 import { ValueOf } from './types'
 
@@ -213,15 +214,6 @@ function mergeForEach&lt;
   while (rhsIndex &lt; sortedRHS.length) {
     rightCallback(sortedRHS[rhsIndex] as RHSItem)
     rhsIndex++
-  }
-
-  function getterFromIteratee&lt;
-    Item extends any,
-    ItemKey extends keyof Item
-  > (iteratee: ItemKey | ((item: Item) => any)): (item: Item) => any {
-    return _.isFunction(iteratee)
-      ? iteratee
-      : ((item: Item) => _.get(item, iteratee as ItemKey))
   }
 }
 
