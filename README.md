@@ -3,7 +3,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/geoblink/lodash-mixins/badge.svg)](https://coveralls.io/github/geoblink/lodash-mixins)
 ![npm bundle size (minified)](https://img.shields.io/bundlephobia/min/@geoblink/lodash-mixins.svg)
 [![npm](https://img.shields.io/npm/v/@geoblink/lodash-mixins.svg)](https://www.npmjs.com/package/@geoblink/lodash-mixins)
-[![docs](https://img.shields.io/badge/docs-automated-blue.svg)](https://geoblink.github.io/lodash-mixins/)
+[![docs](https://img.shields.io/badge/docs-automated-blue.svg)](https://geoblink.github.io/lodash-mixins/) [![Greenkeeper badge](https://badges.greenkeeper.io/geoblink/lodash-mixins.svg)](https://greenkeeper.io/)
 
 
 
