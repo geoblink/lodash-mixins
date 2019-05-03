@@ -37,6 +37,7 @@ export {
   hasTruthyValues,
   mapNonNil,
   mergeForEach,
+  mergeJoinWith,
   mGet,
   shortcuttedReduce
 }
