@@ -1,4 +1,4 @@
-import _, { ObjectIterator } from 'lodash'
+import * as _ from 'lodash'
 
 import mapNonNil from './mapNonNil'
 
@@ -19,7 +19,7 @@ export function fromPairsMapNonNil <
   TResult
 > (
   collection: Collection,
-  iteratee: ObjectIterator<CollectionItem, [PropertyName, TResult] | null | undefined>
+  iteratee: _.ObjectIterator<CollectionItem, [PropertyName, TResult] | null | undefined>
 ) {
   return _.fromPairs(mapNonNil(collection, iteratee) as any) // Cast to any since this typecheck is user's responsibility
 }

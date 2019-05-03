@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import * as _ from 'lodash'
 import lodashMixins from '../..'
 import { expect } from 'chai'
 
@@ -15,7 +15,7 @@ describe('Exported package', function () {
 
   describe('When loading exported package', function () {
     before('Load mixins', function () {
-      lodashMixins(_)
+      lodashMixins(_ as unknown as _.LoDashStatic)
     })
 
     for (const method of injectedMethods) {

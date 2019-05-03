@@ -27,3 +27,14 @@ export default function (_: LoDashStatic) {
 
   return _
 }
+
+export {
+  fromPairsMap,
+  fromPairsMapNonNil,
+  getTruthyKeys,
+  hasTruthyValues,
+  mapNonNil,
+  mergeForEach,
+  mGet,
+  shortcuttedReduce
+}

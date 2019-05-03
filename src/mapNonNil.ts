@@ -1,4 +1,4 @@
-import _, { ObjectIterator, Dictionary } from 'lodash'
+import * as _ from 'lodash'
 
 export default mapNonNil
 
@@ -13,12 +13,12 @@ function mapNonNil<
   CollectionItem extends any,
   Collection extends (
     ArrayLike<CollectionItem | null | undefined> |
-    Dictionary<CollectionItem | null | undefined>
+    _.Dictionary<CollectionItem | null | undefined>
   ),
   ResultValue
 > (
   collection: Collection,
-  iteratee: ObjectIterator<CollectionItem, ResultValue | null | undefined>
+  iteratee: _.ObjectIterator<CollectionItem, ResultValue | null | undefined>
 ) {
   return _.filter(_.map(collection, iteratee), isNotNil)
 

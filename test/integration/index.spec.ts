@@ -1,10 +1,18 @@
-import _ from 'lodash'
-import lodashMixins from '../../src/index'
+import * as _ from 'lodash'
+import lodashMixins, * as namedExports from '../../src/index'
 import { expect } from 'chai'
 
 import injectedMethods from '../exportedMethods'
 
 describe('Exported package', function () {
+  describe('Named exports', function () {
+    for (const method of injectedMethods) {
+      it(`Should export have named export «${method}»`, function () {
+        expect(namedExports).to.have.property(method).that.is.a('function')
+      })
+    }
+  })
+
   describe('Before loading mixins', function () {
     for (const method of injectedMethods) {
       it(`Should not have «${method}» present`, function () {
@@ -15,7 +23,7 @@ describe('Exported package', function () {
 
   describe('When loading exported package', function () {
     before('Load mixins', function () {
-      lodashMixins(_)
+      lodashMixins(_ as unknown as _.LoDashStatic)
     })
 
     for (const method of injectedMethods) {
