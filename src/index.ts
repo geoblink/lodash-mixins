@@ -7,6 +7,7 @@ import mergeForEach from './mergeForEach'
 import mergeJoinWith from './mergeJoinWith'
 import mGet from './mGet'
 import shortcuttedReduce from './shortcuttedReduce'
+import sumMultipleFinite from './sumMultipleFinite'
 import { LoDashStatic } from 'lodash'
 
 /**
@@ -24,7 +25,8 @@ export default function (_: LoDashStatic) {
     mergeForEach: mergeForEach,
     mergeJoinWith: mergeJoinWith,
     mGet: mGet,
-    shortcuttedReduce: shortcuttedReduce
+    shortcuttedReduce: shortcuttedReduce,
+    sumMultipleFinite: sumMultipleFinite
   })
 
   return _
@@ -39,5 +41,6 @@ export {
   mergeForEach,
   mergeJoinWith,
   mGet,
-  shortcuttedReduce
+  shortcuttedReduce,
+  sumMultipleFinite
 }
