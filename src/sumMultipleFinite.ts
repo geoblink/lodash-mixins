@@ -36,7 +36,7 @@ declare module 'lodash' {
     > (
       object: Collection,
       arrayOfKeys: CollectionKey[]
-    ): (Number)
+    ): Number
   }
 
   interface LoDashImplicitWrapper<TValue> {

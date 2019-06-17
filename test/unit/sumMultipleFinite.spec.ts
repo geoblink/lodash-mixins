@@ -10,7 +10,7 @@ describe('sumMultipleFinite', function () {
     expect(result).to.equal(1)
   })
 
-  it('should sum correctly all existing values', function () {
+  it('should sum only requested values when all values are finite', function () {
     const object = {
       a: 1,
       b: 2,
