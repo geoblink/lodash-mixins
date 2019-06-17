@@ -7,5 +7,6 @@ export default [
   'mergeForEach',
   'mergeJoinWith',
   'mGet',
-  'shortcuttedReduce'
+  'shortcuttedReduce',
+  'sumMultipleFinite'
 ]

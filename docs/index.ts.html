@@ -72,7 +72,7 @@
       Geoblink Lodash Mixins
     </h3>
 
-    <h3 id="global-nav">Global</h3><ul><li><a href="global.html#SORTING_ORDER">SORTING_ORDER</a></li><li><a href="global.html#fromPairsMap">fromPairsMap</a></li><li><a href="global.html#fromPairsMapNonNil">fromPairsMapNonNil</a></li><li><a href="global.html#getTruthyKeys">getTruthyKeys</a></li><li><a href="global.html#hasTruthyValues">hasTruthyValues</a></li><li><a href="global.html#mGet">mGet</a></li><li><a href="global.html#mapNonNil">mapNonNil</a></li><li><a href="global.html#mergeForEach">mergeForEach</a></li><li><a href="global.html#mergeJoinWith">mergeJoinWith</a></li><li><a href="global.html#shortcuttedReduce">shortcuttedReduce</a></li></ul>
+    <h3 id="global-nav">Global</h3><ul><li><a href="global.html#SORTING_ORDER">SORTING_ORDER</a></li><li><a href="global.html#fromPairsMap">fromPairsMap</a></li><li><a href="global.html#fromPairsMapNonNil">fromPairsMapNonNil</a></li><li><a href="global.html#getTruthyKeys">getTruthyKeys</a></li><li><a href="global.html#hasTruthyValues">hasTruthyValues</a></li><li><a href="global.html#mGet">mGet</a></li><li><a href="global.html#mapNonNil">mapNonNil</a></li><li><a href="global.html#mergeForEach">mergeForEach</a></li><li><a href="global.html#mergeJoinWith">mergeJoinWith</a></li><li><a href="global.html#shortcuttedReduce">shortcuttedReduce</a></li><li><a href="global.html#sumMultipleFinite">sumMultipleFinite</a></li></ul>
   </nav>
 
   <div id="main">
@@ -96,6 +96,7 @@ import mergeForEach from './mergeForEach'
 import mergeJoinWith from './mergeJoinWith'
 import mGet from './mGet'
 import shortcuttedReduce from './shortcuttedReduce'
+import sumMultipleFinite from './sumMultipleFinite'
 import { LoDashStatic } from 'lodash'
 
 /**
@@ -113,7 +114,8 @@ export default function (_: LoDashStatic) {
     mergeForEach: mergeForEach,
     mergeJoinWith: mergeJoinWith,
     mGet: mGet,
-    shortcuttedReduce: shortcuttedReduce
+    shortcuttedReduce: shortcuttedReduce,
+    sumMultipleFinite: sumMultipleFinite
   })
 
   return _
@@ -128,7 +130,8 @@ export {
   mergeForEach,
   mergeJoinWith,
   mGet,
-  shortcuttedReduce
+  shortcuttedReduce,
+  sumMultipleFinite
 }
 </code></pre>
   </article>
