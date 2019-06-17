@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      getTruthyKeys.ts - Documentation
+      sumMultipleFinite.ts - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -78,7 +78,7 @@
   <div id="main">
     
       <h1 class="page-title">
-        getTruthyKeys.ts
+        sumMultipleFinite.ts
       </h1>
     
 
@@ -89,70 +89,67 @@
   <article>
     <pre class="prettyprint source linenums"><code>import * as _ from 'lodash'
 
-export default getTruthyKeys
+import mGet from './mGet'
+
+export default sumMultipleFinite
 
 /**
- * Gets the keys associated with truthy values in given collection.
+ * Returns the `sum` of multiple values from an object, adding just the `finite` ones.
  *
- * @param collection Collection to iterate over.
- * @param parseKeyFunction Function invoked per iteration. This
- * function takes as parameter a key of a truthy value. The value it returns
- * will be used in resulting list. Note that if this function returns a falsy
- * value value, the key won't be present in resulting collection.
- * @returns New list with just the keys of truthy entries, for which
- * `parseKeyFunction` returned a truthy value.
+ * @param object Object to be queried.
+ * @param arrayOfKeys Array with the paths of the properties to get.
+ * @return Number with the sum of the values for the given key paths.
  */
-function getTruthyKeys&lt;T extends object, TResult>(
-  collection: T | null | undefined,
-  parseKeyFunction?: (key: string) => TResult
-): (string | TResult)[] {
-  const isFunction = _.isFunction(parseKeyFunction)
-
-  const mappedCollection = _.map(collection, function (value, key) {
-    if (!value) return false
-    return parseKeyFunction &amp;&amp; isFunction ? parseKeyFunction(key) : key
-  })
-
-  return _.filter(mappedCollection) as (string | TResult)[] // Casting needed to remove `false`
+export function sumMultipleFinite &lt;
+  Collection extends object,
+  CollectionKey extends keyof Collection
+> (
+  object: Collection,
+  arrayOfKeys: CollectionKey[]
+): (Number) {
+  return _.sum(_.filter(mGet(object, arrayOfKeys), _.isFinite))
 }
 
 declare module 'lodash' {
   interface LoDashStatic {
     /**
-     * Gets the keys associated with truthy values in given collection.
+     * Returns the `sum` of multiple values from an object, adding just the `finite` ones.
      *
-     * @param collection Collection to iterate over.
-     * @param parseKeyFunction Function invoked per iteration. This
-     * function takes as parameter a key of a truthy value. The value it returns
-     * will be used in resulting list. Note that if this function returns a falsy
-     * value value, the key won't be present in resulting collection.
-     * @returns New list with just the keys of truthy entries, for which
-     * `parseKeyFunction` returned a truthy value.
+     * @param object Object to be queried.
+     * @param arrayOfKeys Array with the paths of the properties to get.
+     * @return Number with the sum of the values for the given key paths.
      */
-    getTruthyKeys&lt;T extends object, TResult>(
-      collection: T | null | undefined,
-      parseKeyFunction?: (key: string) => TResult
-    ): (string | TResult)[]
+    sumMultipleFinite&lt;
+      Collection extends object,
+      CollectionKey extends keyof Collection
+    > (
+      object: Collection,
+      arrayOfKeys: CollectionKey[]
+    ): Number
   }
 
   interface LoDashImplicitWrapper&lt;TValue> {
     /**
-     * @see _.getTruthyKeys
+     * @see _.sumMultipleFinite
      */
-    getTruthyKeys&lt;T extends object, TResult>(
-      this: LoDashImplicitWrapper&lt;T[] | null | undefined>,
-      parseKeyFunction?: (key: string) => TResult
-    ): LoDashImplicitWrapper&lt;(string | TResult)[]>
+    sumMultipleFinite&lt;
+      CollectionKey extends keyof TValue
+    >(
+      this: LoDashImplicitWrapper&lt;TValue | null | undefined>,
+      arrayOfKeys: CollectionKey[]
+    ): LoDashImplicitWrapper&lt;(Number)>
   }
 
   interface LoDashExplicitWrapper&lt;TValue> {
     /**
-     * @see _.getTruthyKeys
-     */
-    getTruthyKeys&lt;T extends object, TResult>(
-      this: LoDashExplicitWrapper&lt;T[] | null | undefined>,
-      parseKeyFunction?: (key: string) => TResult
-    ): LoDashExplicitWrapper&lt;(string | TResult)[]>
+    * @see _.sumMultipleFinite
+    */
+    sumMultipleFinite&lt;
+      CollectionKey extends keyof TValue
+    >(
+      this: LoDashExplicitWrapper&lt;TValue | null | undefined>,
+      arrayOfKeys: CollectionKey[]
+    ): LoDashExplicitWrapper&lt;(Number)>
   }
 }
 </code></pre>
