@@ -15,7 +15,7 @@ export type ComparisonResult = number
  * Can be used to implement efficient algorithms which profit from sorted data
  * like `mergeSort` or `mergeJoinWith`.
  *
- * Both collections must be sortable. They will be sorted ascendently using
+ * Both collections must be sortable. They will be sorted ascendantly using
  * value returned by the corresponding iteratee.
  *
  * @param lhs A collection of elements.
@@ -136,7 +136,7 @@ declare module 'lodash' {
      * Can be used to implement efficient algorithms which profit from sorted
      * data like `mergeSort` or `mergeJoinWith`.
      *
-     * Both collections must be sortable. They will be sorted ascendently using
+     * Both collections must be sortable. They will be sorted ascendantly using
      * value returned by the corresponding iteratee.
      *
      * @param lhs A collection of elements.
