@@ -62,13 +62,11 @@ function mergeForEach<
       const lhsValue = getLHSValue(lhsItem) as any
       const rhsValue = getRHSValue(rhsItem) as any
 
-      if (lhsValue < rhsValue) {
-        return SORTING_ORDER.LHS_BEFORE_RHS
-      } else if (lhsValue > rhsValue) {
-        return SORTING_ORDER.LHS_AFTER_RHS
-      } else {
-        return SORTING_ORDER.EQUAL
-      }
+      if (lhsValue === rhsValue) return SORTING_ORDER.EQUAL
+      if (lhsValue < rhsValue) return SORTING_ORDER.LHS_BEFORE_RHS
+      if (lhsValue > rhsValue) return SORTING_ORDER.LHS_AFTER_RHS
+
+      throw new Error(`[@geoblink/lodash-mixins#mergeForEach] Found non-comparable values: ${lhsValue} on LHS and ${rhsValue} on RHS`)
     }
   }: {
     lhsIteratee?: LHSItemKey | ((item: LHSItem) => any),
