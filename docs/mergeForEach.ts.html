@@ -104,7 +104,7 @@ export type ComparisonResult = number
  * Can be used to implement efficient algorithms which profit from sorted data
  * like `mergeSort` or `mergeJoinWith`.
  *
- * Both collections must be sortable. They will be sorted ascendently using
+ * Both collections must be sortable. They will be sorted ascendantly using
  * value returned by the corresponding iteratee.
  *
  * @param lhs A collection of elements.
@@ -151,13 +151,11 @@ function mergeForEach&lt;
       const lhsValue = getLHSValue(lhsItem) as any
       const rhsValue = getRHSValue(rhsItem) as any
 
-      if (lhsValue &lt; rhsValue) {
-        return SORTING_ORDER.LHS_BEFORE_RHS
-      } else if (lhsValue > rhsValue) {
-        return SORTING_ORDER.LHS_AFTER_RHS
-      } else {
-        return SORTING_ORDER.EQUAL
-      }
+      if (lhsValue === rhsValue) return SORTING_ORDER.EQUAL
+      if (lhsValue &lt; rhsValue) return SORTING_ORDER.LHS_BEFORE_RHS
+      if (lhsValue > rhsValue) return SORTING_ORDER.LHS_AFTER_RHS
+
+      throw new Error(`[@geoblink/lodash-mixins#mergeForEach] Found non-comparable values: ${lhsValue} on LHS and ${rhsValue} on RHS`)
     }
   }: {
     lhsIteratee?: LHSItemKey | ((item: LHSItem) => any),
@@ -227,7 +225,7 @@ declare module 'lodash' {
      * Can be used to implement efficient algorithms which profit from sorted
      * data like `mergeSort` or `mergeJoinWith`.
      *
-     * Both collections must be sortable. They will be sorted ascendently using
+     * Both collections must be sortable. They will be sorted ascendantly using
      * value returned by the corresponding iteratee.
      *
      * @param lhs A collection of elements.

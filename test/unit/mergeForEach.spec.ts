@@ -9,6 +9,7 @@ chaiUse(sinonChai)
 describe('mergeForEach', function () {
   const lhsBarcelona = { id: 0, name: 'Barcelona' }
   const lhsMadrid = { id: 1, name: 'Madrid' }
+  const lhsCityWithoutId = { name: 'LHS item without ID' }
 
   const rhsMadrid = { id_city: 1, city_name: 'Madrid' }
   const rhsValencia = { id_city: 2, city_name: 'Valencia' }
@@ -84,6 +85,25 @@ describe('mergeForEach', function () {
     })
   })
 
+  describe('When using default comparison function', function () {
+    describe('When some elements are not comparable', function () {
+      it('Should throw an error', function () {
+        expect(function () {
+          const lhs = [lhsMadrid, lhsBarcelona, lhsCityWithoutId] as any
+          const rhs = [rhsValencia, rhsMadrid, rhsCityWithoutId] as any
+
+          mergeForEach(lhs, rhs, {
+            lhsIteratee: 'id',
+            rhsIteratee: 'id_city',
+            leftCallback,
+            innerCallback,
+            rightCallback
+          })
+        }).to.throw
+      })
+    })
+  })
+
   function buildTestCases<
     L extends any,
     R extends any,
@@ -120,6 +140,7 @@ describe('mergeForEach', function () {
         rightCallback
       })
 
+      expect(leftCallback).to.have.been.calledOnce
       expect(leftCallback).to.have.been.calledWithExactly(lhsBarcelona)
     })
 
@@ -143,8 +164,9 @@ describe('mergeForEach', function () {
         rightCallback
       })
 
-      expect(rightCallback).to.have.been.calledWithExactly(rhsValencia)
+      expect(rightCallback).to.have.been.calledTwice
       expect(rightCallback).to.have.been.calledWithExactly(rhsCityWithoutId)
+      expect(rightCallback).to.have.been.calledWithExactly(rhsValencia)
     })
 
     it('Should not call rightCallback if not provided', function () {
