@@ -34,7 +34,7 @@
     "@babel/cli": "^7.10.1",
     "@babel/core": "^7.10.1",
     "@babel/preset-env": "^7.10.1",
-    "@babel/preset-typescript": "^7.3.3",
+    "@babel/preset-typescript": "^7.10.1",
     "@types/chai": "^4.1.7",
     "@types/lodash": "^4.14.120",
     "@types/mocha": "^5.2.5",
