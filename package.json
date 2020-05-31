@@ -33,7 +33,7 @@
   "devDependencies": {
     "@babel/cli": "^7.10.1",
     "@babel/core": "^7.10.2",
-    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-env": "^7.10.2",
     "@babel/preset-typescript": "^7.3.3",
     "@types/chai": "^4.1.7",
     "@types/lodash": "^4.14.120",
