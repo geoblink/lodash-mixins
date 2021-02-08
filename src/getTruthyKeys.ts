@@ -8,10 +8,8 @@ export default getTruthyKeys
  * @param collection Collection to iterate over.
  * @param parseKeyFunction Function invoked per iteration. This
  * function takes as parameter a key of a truthy value. The value it returns
- * will be used in resulting list. Note that if this function returns a falsy
- * value value, the key won't be present in resulting collection.
- * @returns New list with just the keys of truthy entries, for which
- * `parseKeyFunction` returned a truthy value.
+ * will be used in resulting list.
+ * @returns New list with just the keys of truthy entries.
  */
 function getTruthyKeys<T extends object, TResult>(
   collection: T | null | undefined,
@@ -19,12 +17,13 @@ function getTruthyKeys<T extends object, TResult>(
 ): (string | TResult)[] {
   const isFunction = _.isFunction(parseKeyFunction)
 
-  const mappedCollection = _.map(collection, function (value, key) {
-    if (!value) return false
-    return parseKeyFunction && isFunction ? parseKeyFunction(key) : key
-  })
-
-  return _.filter(mappedCollection) as (string | TResult)[] // Casting needed to remove `false`
+  return _.reduce(collection, function (acc: (string | TResult)[], value, key) {
+    if (value) {
+      const parsedKey = parseKeyFunction && isFunction ? parseKeyFunction(key) : key
+      acc.push(parsedKey)
+    }
+    return acc
+  }, [])
 }
 
 declare module 'lodash' {
@@ -35,10 +34,8 @@ declare module 'lodash' {
      * @param collection Collection to iterate over.
      * @param parseKeyFunction Function invoked per iteration. This
      * function takes as parameter a key of a truthy value. The value it returns
-     * will be used in resulting list. Note that if this function returns a falsy
-     * value value, the key won't be present in resulting collection.
-     * @returns New list with just the keys of truthy entries, for which
-     * `parseKeyFunction` returned a truthy value.
+     * will be used in resulting list.
+     * @returns New list with just the keys of truthy entries.
      */
     getTruthyKeys<T extends object, TResult>(
       collection: T | null | undefined,

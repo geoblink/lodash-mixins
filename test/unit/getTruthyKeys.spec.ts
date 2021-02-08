@@ -15,11 +15,13 @@ describe('getTruthyKeys', function () {
       i: 1,
       j: { a: null },
       k: ['a'],
-      l: 'b'
+      l: 'b',
+      '': true,
+      false: true
     }
 
     const truthyKeys = getTruthyKeys(object)
-    const expectedTruthyKeys = ['a', 'f', 'g', 'i', 'j', 'k', 'l']
+    const expectedTruthyKeys = ['a', 'f', 'g', 'i', 'j', 'k', 'l', '', 'false']
 
     expect(truthyKeys).to.include.members(expectedTruthyKeys)
     expect(expectedTruthyKeys).to.include.members(truthyKeys)
