@@ -19,12 +19,13 @@ function getTruthyKeys<T extends object, TResult>(
 ): (string | TResult)[] {
   const isFunction = _.isFunction(parseKeyFunction)
 
-  const mappedCollection = _.map(collection, function (value, key) {
-    if (!value) return false
-    return parseKeyFunction && isFunction ? parseKeyFunction(key) : key
-  })
-
-  return _.filter(mappedCollection) as (string | TResult)[] // Casting needed to remove `false`
+  return _.reduce(collection, function (acc: (string | TResult)[], value, key) {
+    if (value) {
+      const parsedKey = parseKeyFunction && isFunction ? parseKeyFunction(key) : key
+      acc.push(parsedKey)
+    }
+    return acc
+  }, [])
 }
 
 declare module 'lodash' {
