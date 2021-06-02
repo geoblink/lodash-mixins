@@ -106,7 +106,7 @@ export function sumMultipleFinite &lt;
 > (
   object: Collection,
   arrayOfKeys: CollectionKey[]
-): (Number) {
+): (number) {
   return _.sum(_.filter(mGet(object, arrayOfKeys), _.isFinite))
 }
 
@@ -125,7 +125,7 @@ declare module 'lodash' {
     > (
       object: Collection,
       arrayOfKeys: CollectionKey[]
-    ): Number
+    ): number
   }
 
   interface LoDashImplicitWrapper&lt;TValue> {
@@ -137,7 +137,7 @@ declare module 'lodash' {
     >(
       this: LoDashImplicitWrapper&lt;TValue | null | undefined>,
       arrayOfKeys: CollectionKey[]
-    ): LoDashImplicitWrapper&lt;(Number)>
+    ): LoDashImplicitWrapper&lt;(number)>
   }
 
   interface LoDashExplicitWrapper&lt;TValue> {
@@ -149,7 +149,7 @@ declare module 'lodash' {
     >(
       this: LoDashExplicitWrapper&lt;TValue | null | undefined>,
       arrayOfKeys: CollectionKey[]
-    ): LoDashExplicitWrapper&lt;(Number)>
+    ): LoDashExplicitWrapper&lt;(number)>
   }
 }
 </code></pre>

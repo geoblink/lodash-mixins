@@ -17,7 +17,7 @@ export function sumMultipleFinite <
 > (
   object: Collection,
   arrayOfKeys: CollectionKey[]
-): (Number) {
+): (number) {
   return _.sum(_.filter(mGet(object, arrayOfKeys), _.isFinite))
 }
 
@@ -36,7 +36,7 @@ declare module 'lodash' {
     > (
       object: Collection,
       arrayOfKeys: CollectionKey[]
-    ): Number
+    ): number
   }
 
   interface LoDashImplicitWrapper<TValue> {
@@ -48,7 +48,7 @@ declare module 'lodash' {
     >(
       this: LoDashImplicitWrapper<TValue | null | undefined>,
       arrayOfKeys: CollectionKey[]
-    ): LoDashImplicitWrapper<(Number)>
+    ): LoDashImplicitWrapper<(number)>
   }
 
   interface LoDashExplicitWrapper<TValue> {
@@ -60,6 +60,6 @@ declare module 'lodash' {
     >(
       this: LoDashExplicitWrapper<TValue | null | undefined>,
       arrayOfKeys: CollectionKey[]
-    ): LoDashExplicitWrapper<(Number)>
+    ): LoDashExplicitWrapper<(number)>
   }
 }
